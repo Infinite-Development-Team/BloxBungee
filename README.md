@@ -51,7 +51,7 @@ dependencies {
 
 To compile Waterfall, you need JDK8, git, bash, maven, and an internet connection.
 
-Clone this repo, run `./waterfall b` from *bash*, get jar from Waterfall-Proxy/bootstrap/target/
+Clone this repo, run `./infinitebungee b` from *bash*, get jar from Waterfall-Proxy/bootstrap/target/
 
 ## Join us
 
