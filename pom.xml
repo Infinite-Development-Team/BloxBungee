@@ -9,11 +9,11 @@
     <packaging>pom</packaging>
 
     <name>Waterfall-Super</name>
-    <description>Super project for Waterfall.</description>
-    <url>https://github.com/WaterfallMC/Waterfall</url>
+    <description>Super project for InfiniteBungee.</description>
+    <url>https://github.com/PaperMC/Waterfall.git</url>
 
     <modules>
-        <module>Waterfall-Proxy</module>
+        <module>InfiniteBungee-Proxy</module>
     </modules>
 
     <build>

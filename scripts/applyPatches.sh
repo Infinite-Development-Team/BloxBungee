@@ -62,6 +62,6 @@ fi
 
 
 # Apply patches
-applyPatch BungeeCord Waterfall-Proxy HEAD
+applyPatch BungeeCord InfiniteBungee-Proxy HEAD
 
 enableCommitSigningIfNeeded

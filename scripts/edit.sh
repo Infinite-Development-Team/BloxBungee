@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-pushd Waterfall-Proxy
+pushd InfiniteBungee-Proxy
 git rebase --interactive upstream/upstream
 popd
