@@ -13,7 +13,7 @@ index f1ccd4f6..d703d6d2 100644
      public LogDispatcher(BungeeLogger logger)
      {
 -        super( "BungeeCord Logger Thread" );
-+        super( "Waterfall Logger Thread" );
++        super( "InfiniteBungee Logger Thread" );
          this.logger = logger;
      }
  
