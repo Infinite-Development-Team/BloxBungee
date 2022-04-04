@@ -12,8 +12,7 @@ InfiniteBungee focuses on three main areas:
 ## How To (Plugin Developers)
 ------
  * See our API patches [here](BungeeCord-Patches)
- * Waterfall API JavaDocs here: [papermc.io/javadocs](https://papermc.io/javadocs)
- * Maven repository (for `waterfall-api`):
+ * Maven repository (for `infinitebungee-api`):
 ```xml
 <repository>
     <id>papermc</id>
@@ -23,35 +22,19 @@ InfiniteBungee focuses on three main areas:
  * Artifact information:
 ```xml
 <dependency>
-    <groupId>io.github.waterfallmc</groupId>
-    <artifactId>waterfall-api</artifactId>
+    <groupId>io.github.infinitebungee</groupId>
+    <artifactId>infinitebungee-api</artifactId>
     <version>1.18-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
  ```
 
-**Or alternatively, with Gradle:**
-
- * Repository:
-```groovy
-repositories {
-    maven {
-        url 'https://papermc.io/repo/repository/maven-public/'
-    }
-}
-```
- * Artifact:
-```groovy
-dependencies {
-    compileOnly 'io.github.waterfallmc:waterfall-api:1.18-R0.1-SNAPSHOT'
-}
-```
 
 ## How To (Compiling From Source)
 
-To compile Waterfall, you need JDK8, git, bash, maven, and an internet connection.
+To compile InfiniteBungee, you need JDK8, git, bash, maven, and an internet connection.
 
-Clone this repo, run `./infinitebungee b` from *bash*, get jar from Waterfall-Proxy/bootstrap/target/
+Clone this repo, run `./infinitebungee b` from *bash*, get the jar from InfiniteBungee-Proxy/bootstrap/target/
 
 ## Join us
 
