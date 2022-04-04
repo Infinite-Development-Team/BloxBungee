@@ -1,0 +1,56 @@
+From 0155de8590d51b01f3fab8fb78825964728b9d61 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Sun, 3 Apr 2022 20:54:57 -0400
+Subject: [PATCH] A
+
+
+diff --git a/pom.xml b/pom.xml
+index 505d1d14..d7a827ef 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -4,24 +4,24 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-super</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-super</artifactId>
+         <version>dev-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-parent</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-parent</artifactId>
+     <version>1.18-R0.1-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+-    <name>Waterfall-Parent</name>
+-    <description>Parent project for all Waterfall modules.</description>
+-    <url>https://github.com/WaterfallMC/Waterfall</url>
++    <name>InfiniteBungee-Parent</name>
++    <description>Parent project for all InfiniteBungee modules.</description>
++    <url>https://github.com/SeanMurillo/InfiniteBungee.git</url>
+     <inceptionYear>2015</inceptionYear>
+     <organization>
+-        <name>WaterfallMC</name>
+-        <url>https://github.com/WaterfallMC</url>
++        <name>InfiniteBungee</name>
++        <url>https://github.com/SeanMurillo</url>
+     </organization>
+     <licenses>
+         <license>
+@@ -72,7 +72,7 @@
+     </scm>
+     <issueManagement>
+         <system>GitHub</system>
+-        <url>https://github.com/PaperMC/Waterfall/issues</url>
++        <url>https://github.com/SeanMurillo/InfiniteBungee/issues</url>
+     </issueManagement>
+ 
+     <distributionManagement>
+-- 
+2.32.0 (Apple Git-132)
+

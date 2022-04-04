@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.waterfallmc</groupId>
-    <artifactId>waterfall-super</artifactId>
+    <groupId>io.github.infinitebungee</groupId>
+    <artifactId>infinitebungee-super</artifactId>
     <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Waterfall-Super</name>
+    <name>Infinitebungee-Super</name>
     <description>Super project for InfiniteBungee.</description>
-    <url>https://github.com/PaperMC/Waterfall.git</url>
+    <url>https://github.com/SeanMurillo/InfiniteBungee.git</url>
 
     <modules>
         <module>InfiniteBungee-Proxy</module>
