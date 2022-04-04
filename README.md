@@ -36,12 +36,6 @@ To compile InfiniteBungee, you need JDK8, git, bash, maven, and an internet conn
 
 Clone this repo, run `./infinitebungee b` from *bash*, get the jar from InfiniteBungee-Proxy/bootstrap/target/
 
-## Join us
-
-* Feel free to open a PR! We accept contributions.
-* Join us on IRC (irc.esper.net #waterfall, [webchat](https://webchat.esper.net/?channels=waterfall)) or [Discord](https://discord.gg/papermc).
-* Visit our forums (https://papermc.io/forums).
-
 ## Special Thanks To
 
 ![YourKit-Logo](https://yourkit.com/images/yklogo.png)
