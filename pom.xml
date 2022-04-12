@@ -8,7 +8,7 @@
     <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Infinitebungee-Super</name>
+    <name>InfiniteBungee-Super</name>
     <description>Super project for InfiniteBungee.</description>
     <url>https://github.com/SeanMurillo/InfiniteBungee.git</url>
 
