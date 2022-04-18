@@ -19,27 +19,27 @@ index 4a198ee9..d69463f0 100644
 +     */
 +    boolean isDisableTabListRewrite();
  }
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index e860214f..527f310e 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-@@ -43,6 +43,7 @@ public class WaterfallConfiguration extends Configuration {
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
+@@ -43,6 +43,7 @@ public class InfiniteBungeeConfiguration extends Configuration {
      private boolean disableModernTabLimiter = true;
- 
+
      private boolean disableEntityMetadataRewrite = false;
 +    private boolean disableTabListRewrite = false;
- 
+
      @Override
      public void load() {
-@@ -56,6 +57,7 @@ public class WaterfallConfiguration extends Configuration {
+@@ -56,6 +57,7 @@ public class InfiniteBungeeConfiguration extends Configuration {
          tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
          disableEntityMetadataRewrite = config.getBoolean("disable_entity_metadata_rewrite", disableEntityMetadataRewrite);
 +        disableTabListRewrite = config.getBoolean("disable_tab_list_rewrite", disableTabListRewrite);
      }
- 
+
      @Override
-@@ -87,4 +89,9 @@ public class WaterfallConfiguration extends Configuration {
+@@ -87,4 +89,9 @@ public class InfiniteBungeeConfiguration extends Configuration {
      public boolean isDisableEntityMetadataRewrite() {
          return disableEntityMetadataRewrite;
      }
@@ -59,17 +59,16 @@ index e2adf3f2..74575854 100644
      {
 -        con.getTabListHandler().onUpdate( TabList.rewrite( playerList ) );
 -        throw CancelSendSignal.INSTANCE; // Always throw because of profile rewriting
-+        //Waterfall start
++        //InfiniteBungee start
 +        boolean skipRewrites = bungee.getConfig().isDisableTabListRewrite();
 +        con.getTabListHandler().onUpdate( skipRewrites ? playerList : TabList.rewrite( playerList ) );
 +        if ( !skipRewrites )
 +        {
 +            throw CancelSendSignal.INSTANCE; // Only throw if profile rewriting is enabled
 +        }
-+        // Waterfall end
++        // InfiniteBungee end
      }
- 
-     @Override
--- 
-2.35.1
 
+     @Override
+--
+2.35.1

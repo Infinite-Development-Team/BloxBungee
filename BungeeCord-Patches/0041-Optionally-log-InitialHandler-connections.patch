@@ -9,9 +9,9 @@ index 6141128b..e0baca9c 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -214,6 +214,13 @@ public interface ProxyConfig
-     // Waterfall Options
+     // InfiniteBungee Options
      //
- 
+
 +    /**
 +     * Whether we log InitialHandler connections
 +     *
@@ -22,14 +22,14 @@ index 6141128b..e0baca9c 100644
      /**
       * The supported versions
       *
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index ef44d334..4ff8da6d 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -9,6 +9,13 @@ import java.io.File;
- 
- public class WaterfallConfiguration extends Configuration {
- 
+
+ public class InfiniteBungeeConfiguration extends Configuration {
+
 +    /**
 +     * Whether we log InitialHandler connections
 +     * <p>
@@ -40,18 +40,18 @@ index ef44d334..4ff8da6d 100644
      /**
       * The supported versions displayed to the client
       * <p>Default is a comma separated list of supported versions. For example 1.8.x, 1.9.x, 1.10.x</p>
-@@ -40,6 +47,7 @@ public class WaterfallConfiguration extends Configuration {
+@@ -40,6 +47,7 @@ public class InfiniteBungeeConfiguration extends Configuration {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        logInitialHandlerConnections = config.getBoolean( "log_initial_handler_connections", logInitialHandlerConnections );
          gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
          useNettyDnsResolver = config.getBoolean("use_netty_dns_resolver", useNettyDnsResolver);
          // Throttling options
-@@ -47,6 +55,11 @@ public class WaterfallConfiguration extends Configuration {
+@@ -47,6 +55,11 @@ public class InfiniteBungeeConfiguration extends Configuration {
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
      }
- 
+
 +    @Override
 +    public boolean isLogInitialHandlerConnections() {
 +        return logInitialHandlerConnections;
@@ -69,13 +69,12 @@ index 8f34a575..b634d256 100644
              case 2:
                  // Login
 -                bungee.getLogger().log( Level.INFO, "{0} has connected", this );
-+                if (BungeeCord.getInstance().getConfig().isLogInitialHandlerConnections() ) // Waterfall
++                if (BungeeCord.getInstance().getConfig().isLogInitialHandlerConnections() ) // InfiniteBungee
 +                {
 +                    bungee.getLogger().log( Level.INFO, "{0} has connected", this );
 +                }
                  thisState = State.USERNAME;
                  ch.setProtocol( Protocol.LOGIN );
- 
--- 
-2.33.0
 
+--
+2.33.0

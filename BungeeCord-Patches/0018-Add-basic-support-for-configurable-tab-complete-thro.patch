@@ -9,9 +9,9 @@ index 6495e7f2..b6845bc4 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -130,4 +130,21 @@ public interface ProxyConfig
-     // Waterfall Options
+     // InfiniteBungee Options
      //
- 
+
 +    // Throttling options
 +
 +    /**
@@ -30,14 +30,14 @@ index 6495e7f2..b6845bc4 100644
 +     */
 +    boolean isDisableModernTabLimiter();
  }
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index 741ebfde..91743f01 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -7,11 +7,37 @@ import java.io.File;
- 
- public class WaterfallConfiguration extends Configuration {
- 
+
+ public class InfiniteBungeeConfiguration extends Configuration {
+
 +    /*
 +     * Throttling options
 +     * Helps prevent players from overloading the servers behind us
@@ -55,13 +55,13 @@ index 741ebfde..91743f01 100644
      @Override
      public void load() {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        // Throttling options
 +        tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
 +        disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
      }
- 
+
 +    @Override
 +    public int getTabThrottle() {
 +        return tabThrottle;
@@ -79,7 +79,7 @@ index 253c3287..079ae5a0 100644
 @@ -40,6 +40,8 @@ public class UpstreamBridge extends PacketHandler
      private final ProxyServer bungee;
      private final UserConnection con;
- 
+
 +    private long lastTabCompletion = -1;
 +
      public UpstreamBridge(ProxyServer bungee, UserConnection con)
@@ -89,7 +89,7 @@ index 253c3287..079ae5a0 100644
      @Override
      public void handle(TabCompleteRequest tabComplete) throws Exception
      {
-+        // Waterfall start - tab limiter
++        // InfiniteBungee start - tab limiter
 +        if ( bungee.getConfig().getTabThrottle() > 0 &&
 +                ( con.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_13
 +                && !bungee.getConfig().isDisableModernTabLimiter()))
@@ -102,10 +102,9 @@ index 253c3287..079ae5a0 100644
 +            lastTabCompletion = now;
 +        }
 +
-+        // Waterfall end - tab limiter
++        // InfiniteBungee end - tab limiter
          List<String> suggestions = new ArrayList<>();
          boolean isRegisteredCommand = false;
- 
--- 
-2.30.1 (Apple Git-130)
 
+--
+2.30.1 (Apple Git-130)

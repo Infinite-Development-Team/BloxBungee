@@ -1,7 +1,7 @@
 From 7824ec691a9fb695159ed9a74c7b623f86668cd6 Mon Sep 17 00:00:00 2001
 From: Techcable <Techcable@techcable.net>
 Date: Tue, 25 Oct 2016 11:58:37 -0400
-Subject: [PATCH] Add Waterfall configuration files
+Subject: [PATCH] Add InfiniteBungee configuration files
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
@@ -14,29 +14,29 @@ index 2e41b4c4..6495e7f2 100644
      Favicon getFaviconObject();
 +
 +    //
-+    // Waterfall Options
++    // InfiniteBungee Options
 +    //
 +
  }
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 new file mode 100644
 index 00000000..741ebfde
 --- /dev/null
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -0,0 +1,17 @@
-+package io.github.waterfallmc.waterfall.conf;
++package io.github.infinitebungee.infinitebungee.conf;
 +
 +import net.md_5.bungee.conf.Configuration;
 +import net.md_5.bungee.conf.YamlConfig;
 +
 +import java.io.File;
 +
-+public class WaterfallConfiguration extends Configuration {
++public class InfiniteBungeeConfiguration extends Configuration {
 +
 +    @Override
 +    public void load() {
 +        super.load();
-+        YamlConfig config = new YamlConfig(new File("waterfall.yml"));
++        YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
 +        config.load(false); // Load, but no permissions
 +    }
 +
@@ -49,7 +49,7 @@ index 998316c3..f8f3fb44 100644
  import com.google.gson.Gson;
  import com.google.gson.GsonBuilder;
  import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-+import io.github.waterfallmc.waterfall.conf.WaterfallConfiguration;
++import io.github.infinitebungee.infinitebungee.conf.InfiniteBungeeConfiguration;
  import io.netty.bootstrap.ServerBootstrap;
  import io.netty.channel.Channel;
  import io.netty.channel.ChannelException;
@@ -58,7 +58,7 @@ index 998316c3..f8f3fb44 100644
       */
      @Getter
 -    public final Configuration config = new Configuration();
-+    public final Configuration config = new WaterfallConfiguration();
++    public final Configuration config = new InfiniteBungeeConfiguration();
      /**
       * Localization bundle.
       */
@@ -73,7 +73,7 @@ index e1a6b2b3..56a0f29c 100644
 -public class Configuration implements ProxyConfig
 +public abstract class Configuration implements ProxyConfig
  {
- 
+
      /**
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 index e65558ad..65121ba2 100644
@@ -85,7 +85,7 @@ index e65558ad..65121ba2 100644
      private Map<String, Object> config;
 -    private final File file = new File( "config.yml" );
 +    private final File file;
- 
+
 -    public YamlConfig()
 +    public YamlConfig() {
 +        this(new File("config.yml"));
@@ -98,7 +98,7 @@ index e65558ad..65121ba2 100644
          options.setDefaultFlowStyle( DumperOptions.FlowStyle.BLOCK );
          yaml = new Yaml( options );
 @@ -58,6 +63,11 @@ public class YamlConfig implements ConfigurationAdapter
- 
+
      @Override
      public void load()
 +    {
@@ -112,11 +112,10 @@ index e65558ad..65121ba2 100644
 @@ -86,6 +96,7 @@ public class YamlConfig implements ConfigurationAdapter
              throw new RuntimeException( "Could not load configuration!", ex );
          }
- 
-+        if(!doPermissions) return; // Waterfall
+
++        if(!doPermissions) return; // InfiniteBungee
          Map<String, Object> permissions = get( "permissions", null );
          if ( permissions == null )
          {
--- 
+--
 2.31.1
-

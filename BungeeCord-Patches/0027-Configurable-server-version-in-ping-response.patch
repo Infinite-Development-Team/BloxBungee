@@ -9,9 +9,9 @@ index edbae4ea..749059ab 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -214,6 +214,13 @@ public interface ProxyConfig
-     // Waterfall Options
+     // InfiniteBungee Options
      //
- 
+
 +    /**
 +     * The supported versions
 +     *
@@ -20,24 +20,24 @@ index edbae4ea..749059ab 100644
 +    String getGameVersion();
 +
      // Throttling options
- 
+
      /**
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index 91743f01..111404fb 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -1,12 +1,20 @@
- package io.github.waterfallmc.waterfall.conf;
- 
+ package io.github.infinitebungee.infinitebungee.conf;
+
 +import com.google.common.base.Joiner;
  import net.md_5.bungee.conf.Configuration;
  import net.md_5.bungee.conf.YamlConfig;
 +import net.md_5.bungee.protocol.ProtocolConstants;
- 
+
  import java.io.File;
- 
- public class WaterfallConfiguration extends Configuration {
- 
+
+ public class InfiniteBungeeConfiguration extends Configuration {
+
 +    /**
 +     * The supported versions displayed to the client
 +     * <p>Default is a comma separated list of supported versions. For example 1.8.x, 1.9.x, 1.10.x</p>
@@ -47,16 +47,16 @@ index 91743f01..111404fb 100644
      /*
       * Throttling options
       * Helps prevent players from overloading the servers behind us
-@@ -26,11 +34,17 @@ public class WaterfallConfiguration extends Configuration {
+@@ -26,11 +34,17 @@ public class InfiniteBungeeConfiguration extends Configuration {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
          // Throttling options
          tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
      }
- 
+
 +    @Override
 +    public String getGameVersion() {
 +        return gameVersion;
@@ -74,10 +74,9 @@ index 7d08b164..1db22fc6 100644
      public String getGameVersion()
      {
 -        return ProtocolConstants.SUPPORTED_VERSIONS.get( 0 ) + "-" + ProtocolConstants.SUPPORTED_VERSIONS.get( ProtocolConstants.SUPPORTED_VERSIONS.size() - 1 );
-+        return getConfig().getGameVersion(); // Waterfall
++        return getConfig().getGameVersion(); // InfiniteBungee
      }
- 
-     @Override
--- 
-2.30.1 (Apple Git-130)
 
+     @Override
+--
+2.30.1 (Apple Git-130)

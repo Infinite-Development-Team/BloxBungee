@@ -25,28 +25,28 @@ index e0baca9c..f3bced0a 100644
 +     */
 +    boolean isDisableEntityMetadataRewrite();
  }
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index 4ff8da6d..e860214f 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-@@ -42,6 +42,8 @@ public class WaterfallConfiguration extends Configuration {
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
+@@ -42,6 +42,8 @@ public class InfiniteBungeeConfiguration extends Configuration {
      private int tabThrottle = 1000;
      private boolean disableModernTabLimiter = true;
- 
+
 +    private boolean disableEntityMetadataRewrite = false;
 +
      @Override
      public void load() {
          super.load();
-@@ -53,6 +55,7 @@ public class WaterfallConfiguration extends Configuration {
+@@ -53,6 +55,7 @@ public class InfiniteBungeeConfiguration extends Configuration {
          // Throttling options
          tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
 +        disableEntityMetadataRewrite = config.getBoolean("disable_entity_metadata_rewrite", disableEntityMetadataRewrite);
      }
- 
+
      @Override
-@@ -79,4 +82,9 @@ public class WaterfallConfiguration extends Configuration {
+@@ -79,4 +82,9 @@ public class InfiniteBungeeConfiguration extends Configuration {
      public boolean isDisableModernTabLimiter() {
          return disableModernTabLimiter;
      }
@@ -63,7 +63,7 @@ index 5595278b..9e74d158 100644
 @@ -240,7 +240,7 @@ public class ServerConnector extends PacketHandler
              ch.write( new PluginMessage( user.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_13 ? "minecraft:register" : "REGISTER", Joiner.on( "\0" ).join( registeredChannels ).getBytes( StandardCharsets.UTF_8 ), false ) );
          }
- 
+
 -        if ( user.getSettings() != null )
 +        if (!user.isDisableEntityMetadataRewrite() && user.getSettings() != null )
          {
@@ -71,9 +71,9 @@ index 5595278b..9e74d158 100644
          }
 @@ -293,6 +293,7 @@ public class ServerConnector extends PacketHandler
              user.getTabListHandler().onServerChange();
- 
+
              Scoreboard serverScoreboard = user.getServerSentScoreboard();
-+            if ( !user.isDisableEntityMetadataRewrite() ) { // Waterfall
++            if ( !user.isDisableEntityMetadataRewrite() ) { // InfiniteBungee
              for ( Objective objective : serverScoreboard.getObjectives() )
              {
                  user.unsafe().sendPacket( new ScoreboardObjective( objective.getName(), objective.getValue(), ScoreboardObjective.HealthDisplay.fromString( objective.getType() ), (byte) 1 ) );
@@ -81,29 +81,29 @@ index 5595278b..9e74d158 100644
              {
                  user.unsafe().sendPacket( new net.md_5.bungee.protocol.packet.Team( team.getName() ) );
              }
-+            } // Waterfall
++            } // InfiniteBungee
              serverScoreboard.clear();
- 
+
              for ( UUID bossbar : user.getSentBossBars() )
 @@ -323,12 +325,35 @@ public class ServerConnector extends PacketHandler
              }
- 
+
              user.setDimensionChange( true );
 -            if ( login.getDimension() == user.getDimension() )
-+            if ( !user.isDisableEntityMetadataRewrite() && login.getDimension() == user.getDimension() ) // Waterfall - defer
++            if ( !user.isDisableEntityMetadataRewrite() && login.getDimension() == user.getDimension() ) // InfiniteBungee - defer
              {
                  user.unsafe().sendPacket( new Respawn( (Integer) login.getDimension() >= 0 ? -1 : 0, login.getWorldName(), login.getSeed(), login.getDifficulty(), login.getGameMode(), login.getPreviousGameMode(), login.getLevelType(), login.isDebug(), login.isFlat(), false ) );
              }
- 
+
              user.setServerEntityId( login.getEntityId() );
 +
-+            // Waterfall start
++            // InfiniteBungee start
 +            if ( user.isDisableEntityMetadataRewrite() ) {
 +                // Ensure that we maintain consistency
 +                user.setClientEntityId( login.getEntityId() );
 +
 +                // Only send if we are not in the same dimension
-+                if ( login.getDimension() != user.getDimension() ) // Waterfall - defer
++                if ( login.getDimension() != user.getDimension() ) // InfiniteBungee - defer
 +                {
 +                    user.unsafe().sendPacket( new Respawn( (Integer) user.getDimension() >= 0 ? -1 : 0, login.getWorldName(), login.getSeed(), login.getDifficulty(), login.getGameMode(), login.getPreviousGameMode(), login.getLevelType(), login.isDebug(), login.isFlat(), false ) );
 +                }
@@ -113,12 +113,12 @@ index 5595278b..9e74d158 100644
 +                user.unsafe().sendPacket(modLogin);
 +
 +                // Only send if we're in the same dimension
-+                if ( login.getDimension() == user.getDimension() ) // Waterfall - defer
++                if ( login.getDimension() == user.getDimension() ) // InfiniteBungee - defer
 +                {
 +                    user.unsafe().sendPacket( new Respawn( (Integer) login.getDimension() >= 0 ? -1 : 0, login.getWorldName(), login.getSeed(), login.getDifficulty(), login.getGameMode(), login.getPreviousGameMode(), login.getLevelType(), login.isDebug(), login.isFlat(), false ) );
 +                }
 +            }
-+            // Waterfall end
++            // InfiniteBungee end
              user.unsafe().sendPacket( new Respawn( login.getDimension(), login.getWorldName(), login.getSeed(), login.getDifficulty(), login.getGameMode(), login.getPreviousGameMode(), login.getLevelType(), login.isDebug(), login.isFlat(), false ) );
              if ( user.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_14 )
              {
@@ -131,11 +131,11 @@ index 2cbf002e..17f68fd7 100644
          return serverSentScoreboard;
      }
 +
-+    // Waterfall start
++    // InfiniteBungee start
 +    public boolean isDisableEntityMetadataRewrite() {
 +        return entityRewrite == net.md_5.bungee.entitymap.EntityMap_Dummy.INSTANCE;
 +    }
-+    // Waterfall end
++    // InfiniteBungee end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 index b5f8c473..01b29247 100644
@@ -145,7 +145,7 @@ index b5f8c473..01b29247 100644
      @Override
      public void handle(EntityEffect entityEffect) throws Exception
      {
-+        if (con.isDisableEntityMetadataRewrite()) return; // Waterfall
++        if (con.isDisableEntityMetadataRewrite()) return; // InfiniteBungee
          // Don't send any potions when switching between servers (which involves a handshake), which can trigger a race
          // condition on the client.
          if (this.con.getForgeClientHandler().isForgeUser() && !this.con.getForgeClientHandler().isHandshakeComplete()) {
@@ -153,10 +153,10 @@ index b5f8c473..01b29247 100644
      @Override
      public void handle(EntityRemoveEffect removeEffect) throws Exception
      {
-+        if (con.isDisableEntityMetadataRewrite()) return; // Waterfall
++        if (con.isDisableEntityMetadataRewrite()) return; // InfiniteBungee
          con.getPotions().remove(rewriteEntityId(removeEffect.getEntityId()), removeEffect.getEffectId());
      }
- 
+
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java
 index f87ce538..cda6451d 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java
@@ -173,11 +173,11 @@ index f87ce538..cda6451d 100644
      // Returns the correct entity map for the protocol version
      public static EntityMap getEntityMap(int version)
      {
-+        // Waterfall start
++        // InfiniteBungee start
 +        if (net.md_5.bungee.api.ProxyServer.getInstance().getConfig().isDisableEntityMetadataRewrite()) {
 +            return EntityMap_Dummy.INSTANCE;
 +        }
-+        // Waterfall end
++        // InfiniteBungee end
          switch ( version )
          {
              case ProtocolConstants.MINECRAFT_1_8:
@@ -186,16 +186,16 @@ index f87ce538..cda6451d 100644
                      break;
                  default:
 -                    throw new IllegalArgumentException( "Unknown meta type " + type );
-+                    // Waterfall start - Don't lie
++                    // InfiniteBungee start - Don't lie
 +                    if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_13 )
 +                    {
 +                        type++;
 +                    }
-+                    throw new IllegalArgumentException( "Unknown meta type " + type  + ": Using mods? refer to disable_entity_metadata_rewrite in waterfall.yml" );
-+                    // Waterfall end
++                    throw new IllegalArgumentException( "Unknown meta type " + type  + ": Using mods? refer to disable_entity_metadata_rewrite in infinitebungee.yml" );
++                    // InfiniteBungee end
              }
          }
- 
+
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_Dummy.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_Dummy.java
 new file mode 100644
 index 00000000..cb81d1dd
@@ -206,7 +206,7 @@ index 00000000..cb81d1dd
 +package net.md_5.bungee.entitymap;
 +
 +import io.netty.buffer.ByteBuf;
-+// Waterfall start
++// InfiniteBungee start
 +
 +public class EntityMap_Dummy extends EntityMap {
 +
@@ -231,8 +231,7 @@ index 00000000..cb81d1dd
 +    public void rewriteClientbound(ByteBuf packet, int oldId, int newId, int protocolVersion) {
 +    }
 +}
-+// Waterfall end
++// InfiniteBungee end
 \ No newline at end of file
--- 
+--
 2.35.1
-

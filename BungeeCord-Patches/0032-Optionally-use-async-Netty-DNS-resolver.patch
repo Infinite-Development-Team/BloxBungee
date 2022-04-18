@@ -12,7 +12,7 @@ index 749059ab..6141128b 100644
 @@ -221,6 +221,13 @@ public interface ProxyConfig
       */
      String getGameVersion();
- 
+
 +    /**
 +     * Whether Netty's async DNS resolver is used for account authentication.
 +     *
@@ -21,7 +21,7 @@ index 749059ab..6141128b 100644
 +    boolean isUseNettyDnsResolver();
 +
      // Throttling options
- 
+
      /**
 diff --git a/proxy/pom.xml b/proxy/pom.xml
 index 0cd347d8..526617e0 100644
@@ -31,7 +31,7 @@ index 0cd347d8..526617e0 100644
              <version>${netty.version}</version>
              <scope>compile</scope>
          </dependency>
-+        <!-- Waterfall Start - add Netty DNS resolver -->
++        <!-- InfiniteBungee Start - add Netty DNS resolver -->
 +        <dependency>
 +            <groupId>io.netty</groupId>
 +            <artifactId>netty-resolver-dns</artifactId>
@@ -44,18 +44,18 @@ index 0cd347d8..526617e0 100644
 +            <version>${netty.version}</version>
 +            <classifier>osx-x86_64</classifier>
 +        </dependency>
-+        <!-- Waterfall End -->
++        <!-- InfiniteBungee End -->
          <dependency>
              <groupId>io.netty</groupId>
              <artifactId>netty-handler</artifactId>
-diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 index 111404fb..ef44d334 100644
---- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-+++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-@@ -15,6 +15,12 @@ public class WaterfallConfiguration extends Configuration {
+--- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
++++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
+@@ -15,6 +15,12 @@ public class InfiniteBungeeConfiguration extends Configuration {
       */
      private String gameVersion;
- 
+
 +    /**
 +     * Whether we use Netty's async DNS resolver for the HttpClient.
 +     * <p>Default is true (use Netty's async DNS resolver)</p>
@@ -65,18 +65,18 @@ index 111404fb..ef44d334 100644
      /*
       * Throttling options
       * Helps prevent players from overloading the servers behind us
-@@ -35,6 +41,7 @@ public class WaterfallConfiguration extends Configuration {
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+@@ -35,6 +41,7 @@ public class InfiniteBungeeConfiguration extends Configuration {
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
          gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
 +        useNettyDnsResolver = config.getBoolean("use_netty_dns_resolver", useNettyDnsResolver);
          // Throttling options
          tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
-@@ -45,6 +52,11 @@ public class WaterfallConfiguration extends Configuration {
+@@ -45,6 +52,11 @@ public class InfiniteBungeeConfiguration extends Configuration {
          return gameVersion;
      }
- 
+
 +    @Override
 +    public boolean isUseNettyDnsResolver() {
 +        return useNettyDnsResolver;
@@ -90,20 +90,20 @@ index e0c52f21..37337429 100644
 --- a/proxy/src/main/java/net/md_5/bungee/http/HttpClient.java
 +++ b/proxy/src/main/java/net/md_5/bungee/http/HttpClient.java
 @@ -28,6 +28,10 @@ public class HttpClient
- 
+
      public static final int TIMEOUT = 5000;
      private static final Cache<String, InetAddress> addressCache = CacheBuilder.newBuilder().expireAfterWrite( 1, TimeUnit.MINUTES ).build();
-+    // Waterfall Start - optionally use async resolver from Netty
++    // InfiniteBungee Start - optionally use async resolver from Netty
 +    private static final io.netty.resolver.dns.DnsAddressResolverGroup dnsResolverGroup =
 +            new io.netty.resolver.dns.DnsAddressResolverGroup(PipelineUtils.getDatagramChannel(), io.netty.resolver.dns.DefaultDnsServerAddressStreamProvider.INSTANCE);
-+    // Waterfall End
- 
++    // InfiniteBungee End
+
      @SuppressWarnings("UnusedAssignment")
      public static void get(String url, EventLoop eventLoop, final Callback<String> callback)
 @@ -57,19 +61,21 @@ public class HttpClient
              }
          }
- 
+
 -        InetAddress inetHost = addressCache.getIfPresent( uri.getHost() );
 -        if ( inetHost == null )
 -        {
@@ -117,7 +117,7 @@ index e0c52f21..37337429 100644
 -            }
 -            addressCache.put( uri.getHost(), inetHost );
 -        }
-+        // Waterfall Start - Move address creation to implementation method
++        // InfiniteBungee Start - Move address creation to implementation method
 +        //InetAddress inetHost = addressCache.getIfPresent( uri.getHost() );
 +        //if ( inetHost == null )
 +        //{
@@ -131,16 +131,16 @@ index e0c52f21..37337429 100644
 +        //    }
 +        //    addressCache.put( uri.getHost(), inetHost );
 +        //}
-+        // Waterfall End
- 
++        // InfiniteBungee End
+
          ChannelFutureListener future = new ChannelFutureListener()
          {
 @@ -92,7 +98,40 @@ public class HttpClient
              }
          };
- 
+
 +
-+        // Waterfall Start - Optionally use Netty's async DNS Resolver
++        // InfiniteBungee Start - Optionally use Netty's async DNS Resolver
 +        if (net.md_5.bungee.api.ProxyServer.getInstance().getConfig().isUseNettyDnsResolver()) {
 +            getWithNettyResolver(eventLoop, uri, port, future, callback, ssl);
 +        } else {
@@ -174,8 +174,7 @@ index e0c52f21..37337429 100644
          new Bootstrap().channel( PipelineUtils.getChannel( null ) ).group( eventLoop ).handler( new HttpInitializer( callback, ssl, uri.getHost(), port ) ).
                  option( ChannelOption.CONNECT_TIMEOUT_MILLIS, TIMEOUT ).remoteAddress( inetHost, port ).connect().addListener( future );
      }
-+    // Waterfall End
++    // InfiniteBungee End
  }
--- 
+--
 2.30.1 (Apple Git-130)
-
