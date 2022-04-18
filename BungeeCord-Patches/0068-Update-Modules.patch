@@ -1,0 +1,43 @@
+From 5ce2b5932dcaa42549d80cf99945bb526f120b75 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Sun, 17 Apr 2022 22:26:04 -0400
+Subject: [PATCH] Update Modules
+
+
+diff --git a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlertRaw.java b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlertRaw.java
+index 7292899d..9e6e7de8 100644
+--- a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlertRaw.java
++++ b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlertRaw.java
+@@ -15,7 +15,7 @@ public class CommandAlertRaw extends Command
+
+     public CommandAlertRaw()
+     {
+-        super( "alertraw", "bungeecord.command.alert" );
++        super( "alertraw", "infinitebungee.command.alert" );
+     }
+
+     @Override
+diff --git a/module/pom.xml b/module/pom.xml
+index a8f77064..33934785 100644
+--- a/module/pom.xml
++++ b/module/pom.xml
+@@ -6,7 +6,7 @@
+     <parent>
+         <groupId>io.github.infinitebungee</groupId>
+         <artifactId>infinitebungee-parent</artifactId>
+-        <version>1.18-R0.1-SNAPSHOT</version>
++        <version>1.18-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+
+@@ -16,7 +16,7 @@
+     <packaging>pom</packaging>
+
+     <name>InfiniteBungee Modules</name>
+-    <description>Parent project for all Waterfall modules.</description>
++    <description>Parent project for all InfiniteBungee modules.</description>
+
+     <modules>
+         <module>cmd-alert</module>
+--
+2.32.0 (Apple Git-132)
