@@ -1,17 +1,17 @@
-From d8edfd4f25297caf0e989e55fe987bb86bc47c36 Mon Sep 17 00:00:00 2001
+From 7eb544678d32d6406cd6d3c30a575e408780cdfc Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Wed, 29 Jun 2016 13:56:57 -0500
 Subject: [PATCH] Configurable server version in ping response
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
-index edbae4ea..749059ab 100644
+index 0829c81a..364673c0 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -214,6 +214,13 @@ public interface ProxyConfig
      // InfiniteBungee Options
      //
-
+ 
 +    /**
 +     * The supported versions
 +     *
@@ -20,24 +20,24 @@ index edbae4ea..749059ab 100644
 +    String getGameVersion();
 +
      // Throttling options
-
+ 
      /**
 diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-index 91743f01..111404fb 100644
+index bb92e128..8b250b54 100644
 --- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 +++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -1,12 +1,20 @@
  package io.github.infinitebungee.infinitebungee.conf;
-
+ 
 +import com.google.common.base.Joiner;
  import net.md_5.bungee.conf.Configuration;
  import net.md_5.bungee.conf.YamlConfig;
 +import net.md_5.bungee.protocol.ProtocolConstants;
-
+ 
  import java.io.File;
-
+ 
  public class InfiniteBungeeConfiguration extends Configuration {
-
+ 
 +    /**
 +     * The supported versions displayed to the client
 +     * <p>Default is a comma separated list of supported versions. For example 1.8.x, 1.9.x, 1.10.x</p>
@@ -56,7 +56,7 @@ index 91743f01..111404fb 100644
          tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
          disableModernTabLimiter = config.getBoolean("disable_modern_tab_limiter", disableModernTabLimiter);
      }
-
+ 
 +    @Override
 +    public String getGameVersion() {
 +        return gameVersion;
@@ -66,7 +66,7 @@ index 91743f01..111404fb 100644
      public int getTabThrottle() {
          return tabThrottle;
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 7d08b164..1db22fc6 100644
+index d3267780..6ae6332e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -689,7 +689,7 @@ public class BungeeCord extends ProxyServer
@@ -76,7 +76,8 @@ index 7d08b164..1db22fc6 100644
 -        return ProtocolConstants.SUPPORTED_VERSIONS.get( 0 ) + "-" + ProtocolConstants.SUPPORTED_VERSIONS.get( ProtocolConstants.SUPPORTED_VERSIONS.size() - 1 );
 +        return getConfig().getGameVersion(); // InfiniteBungee
      }
-
+ 
      @Override
---
-2.30.1 (Apple Git-130)
+-- 
+2.32.0 (Apple Git-132)
+

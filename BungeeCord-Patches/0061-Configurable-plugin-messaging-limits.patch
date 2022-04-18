@@ -1,4 +1,4 @@
-From cffebb622018407da2281f266d82acce6b752cac Mon Sep 17 00:00:00 2001
+From e932a4d79ab9ce0121a226b5f4406953fb6cca37 Mon Sep 17 00:00:00 2001
 From: FivePB <admin@fivepb.me>
 Date: Tue, 16 Nov 2021 21:15:32 +0100
 Subject: [PATCH] Configurable plugin messaging limits
@@ -8,7 +8,7 @@ as their name length limit configurable. This is required for some modded
 servers and clients to work
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
-index d69463f0..469fe0e1 100644
+index d938d8e5..e3a6171a 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -261,4 +261,18 @@ public interface ProxyConfig
@@ -31,13 +31,13 @@ index d69463f0..469fe0e1 100644
 +    int getPluginChannelNameLimit();
  }
 diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-index 527f310e..e31fb00a 100644
+index ea180011..4ebb66aa 100644
 --- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 +++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
 @@ -45,6 +45,23 @@ public class InfiniteBungeeConfiguration extends Configuration {
      private boolean disableEntityMetadataRewrite = false;
      private boolean disableTabListRewrite = false;
-
+ 
 +    /*
 +     * Plugin Message limiting options
 +     * Allows for more control over server-client communication
@@ -65,7 +65,7 @@ index 527f310e..e31fb00a 100644
 +        pluginChannelLimit = config.getInt("registered_plugin_channels_limit", pluginChannelLimit);
 +        pluginChannelNameLimit = config.getInt("plugin_channel_name_limit", pluginChannelNameLimit);
      }
-
+ 
      @Override
 @@ -94,4 +113,14 @@ public class InfiniteBungeeConfiguration extends Configuration {
      public boolean isDisableTabListRewrite() {
@@ -83,11 +83,11 @@ index 527f310e..e31fb00a 100644
 +    }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index c3e60fa5..4afab05d 100644
+index 50b810f6..97afa8cc 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -682,9 +682,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
-
+ 
              for ( String id : content.split( "\0" ) )
              {
 -                Preconditions.checkState( registeredChannels.size() < 128, "Too many registered channels" );
@@ -100,5 +100,6 @@ index c3e60fa5..4afab05d 100644
                  registeredChannels.add( id );
              }
          } else if ( input.getTag().equals( "UNREGISTER" ) || input.getTag().equals( "minecraft:unregister" ) )
---
-2.33.1
+-- 
+2.32.0 (Apple Git-132)
+

@@ -1,4 +1,4 @@
-From 93bbcf3c7f1ba6181df03bdf52de0b28d771a7c4 Mon Sep 17 00:00:00 2001
+From 000676365525e9dfa436aabfd64d70328281c764 Mon Sep 17 00:00:00 2001
 From: Tux <write@imaginarycode.com>
 Date: Thu, 19 May 2016 11:28:45 -0700
 Subject: [PATCH] Rename references from BungeeCord to Waterfall
@@ -9,14 +9,14 @@ index f1ccd4f6..d044b68f 100644
 --- a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 +++ b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 @@ -12,7 +12,7 @@ public class LogDispatcher extends Thread
-
+ 
      public LogDispatcher(BungeeLogger logger)
      {
 -        super( "BungeeCord Logger Thread" );
 +        super( "InfiniteBungee Logger Thread" );
          this.logger = logger;
      }
-
+ 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 index c3bb3afa..4c6b9954 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
@@ -27,7 +27,7 @@ index c3bb3afa..4c6b9954 100644
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
 -        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use BungeeCord in directory with ! in path." );
 +        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use InfiniteBungee in directory with ! in path." );
-
+ 
          try
          {
 @@ -528,7 +528,7 @@ public class BungeeCord extends ProxyServer
@@ -37,10 +37,10 @@ index c3bb3afa..4c6b9954 100644
 -        return "BungeeCord";
 +        return "Infinite";
      }
-
+ 
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 7281d6b2..3bd55b98 100644
+index 7281d6b2..b96ff635 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -54,7 +54,7 @@ public class BungeeCordLauncher
@@ -53,16 +53,16 @@ index 7281d6b2..3bd55b98 100644
                  System.err.println( "*** Server will start in 10 seconds ***" );
                  Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
 @@ -63,7 +63,7 @@ public class BungeeCordLauncher
-
+ 
          BungeeCord bungee = new BungeeCord();
          ProxyServer.setInstance( bungee );
 -        bungee.getLogger().info( "Enabled BungeeCord version " + bungee.getVersion() );
 +        bungee.getLogger().info( "Enabled InfiniteBungee version " + bungee.getVersion() );
          bungee.start();
-
+ 
          if ( !options.has( "noconsole" ) )
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
-index b0798791..c26d46e7 100644
+index b0798791..5a368d19 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 @@ -16,6 +16,6 @@ public class CommandBungee extends Command
@@ -80,7 +80,7 @@ index 6790da28..bfe4c976 100644
 @@ -23,7 +23,7 @@ public class CommandReload extends Command
          BungeeCord.getInstance().startListeners();
          BungeeCord.getInstance().getPluginManager().callEvent( new ProxyReloadEvent( sender ) );
-
+ 
 -        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "BungeeCord has been reloaded."
 -                + " This is NOT advisable and you will not be supported with any issues that arise! Please restart BungeeCord ASAP." );
 +        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "InfiniteBungee has been reloaded."
@@ -100,5 +100,6 @@ index 2691b8b8..625d2a79 100644
              boolean restricted = get( "restricted", false, val );
              SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
---
+-- 
 2.32.0 (Apple Git-132)
+
