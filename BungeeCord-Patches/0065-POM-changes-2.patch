@@ -415,7 +415,7 @@ index 350a49b8..a8f77064 100644
  
      <properties>
 -        <module.author>WaterfallMC</module.author>
-+        <module.author>Infinite Development team</module.author>
++        <module.author>the Infinite Development team</module.author>
          <maven.deploy.skip>true</maven.deploy.skip>
          <maven.javadoc.skip>true</maven.javadoc.skip>
      </properties>
