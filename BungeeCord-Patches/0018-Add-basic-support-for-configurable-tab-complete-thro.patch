@@ -55,7 +55,7 @@ index 741ebfde..91743f01 100644
      @Override
      public void load() {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        // Throttling options
 +        tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
