@@ -42,7 +42,7 @@ index ef44d334..4ff8da6d 100644
       * <p>Default is a comma separated list of supported versions. For example 1.8.x, 1.9.x, 1.10.x</p>
 @@ -40,6 +47,7 @@ public class WaterfallConfiguration extends Configuration {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        logInitialHandlerConnections = config.getBoolean( "log_initial_handler_connections", logInitialHandlerConnections );
          gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
