@@ -1,4 +1,4 @@
-From 0351cf0fcc7bcbad009800208fda7a8f1f34135c Mon Sep 17 00:00:00 2001
+From 182f80c2171d1258cef96d9acfde5c3d608bbd4d Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Fri, 22 Sep 2017 12:46:47 +0200
 Subject: [PATCH] Use Log4j2 for logging and TerminalConsoleAppender for
@@ -6,7 +6,7 @@ Subject: [PATCH] Use Log4j2 for logging and TerminalConsoleAppender for
 
 
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index b3a70840..00ce099c 100644
+index cf7ef042..688f1b99 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -49,6 +49,9 @@
@@ -39,7 +39,7 @@ index b3a70840..00ce099c 100644
      </build>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
 new file mode 100644
-index 00000000..70f112fd
+index 00000000..44bf7f91
 --- /dev/null
 +++ b/log4j/pom.xml
 @@ -0,0 +1,48 @@
@@ -50,20 +50,20 @@ index 00000000..70f112fd
 +    <parent>
 +        <groupId>io.github.waterfallmc</groupId>
 +        <artifactId>waterfall-parent</artifactId>
-+        <version>1.18-R0.1-SNAPSHOT</version>
++        <version>1.19-R0.1-SNAPSHOT</version>
 +        <relativePath>../pom.xml</relativePath>
 +    </parent>
 +
 +    <groupId>io.github.waterfallmc</groupId>
 +    <artifactId>waterfall-log4j</artifactId>
-+    <version>1.18-R0.1-SNAPSHOT</version>
++    <version>1.19-R0.1-SNAPSHOT</version>
 +    <packaging>jar</packaging>
 +
 +    <name>Waterfall-Log</name>
 +    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
 +
 +    <properties>
-+        <log4j2.version>2.17.1</log4j2.version>
++        <log4j2.version>2.17.2</log4j2.version>
 +    </properties>
 +
 +    <dependencies>
@@ -206,12 +206,12 @@ index 00000000..e43f5dac
 +log4j.skipJansi=true
 diff --git a/log4j/src/main/resources/log4j2.xml b/log4j/src/main/resources/log4j2.xml
 new file mode 100644
-index 00000000..93ce3b14
+index 00000000..cfd039cd
 --- /dev/null
 +++ b/log4j/src/main/resources/log4j2.xml
 @@ -0,0 +1,22 @@
 +<?xml version="1.0" encoding="UTF-8"?>
-+<Configuration status="warn">
++<Configuration status="warn" shutdownHook="disable">
 +    <Appenders>
 +        <TerminalConsole name="TerminalConsole">
 +            <PatternLayout pattern="%highlightError{[%d{HH:mm:ss} %level]: %minecraftFormatting{%msg}%n%xEx}" />
@@ -233,7 +233,7 @@ index 00000000..93ce3b14
 +    </Loggers>
 +</Configuration>
 diff --git a/pom.xml b/pom.xml
-index f371e3dd..505d1d14 100644
+index 659f86ec..8bb55d75 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -56,11 +56,12 @@
@@ -251,10 +251,10 @@ index f371e3dd..505d1d14 100644
      </modules>
  
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 6fd55644..cca0ef95 100644
+index c726cb18..1036a2e7 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
-@@ -71,7 +71,7 @@
+@@ -78,7 +78,7 @@
          </dependency>
          <dependency>
              <groupId>io.github.waterfallmc</groupId>
@@ -263,7 +263,7 @@ index 6fd55644..cca0ef95 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -93,12 +93,13 @@
+@@ -100,12 +100,13 @@
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
@@ -278,32 +278,32 @@ index 6fd55644..cca0ef95 100644
          <dependency>
              <groupId>net.sf.jopt-simple</groupId>
              <artifactId>jopt-simple</artifactId>
-@@ -130,6 +131,25 @@
-             <version>1.7.2</version>
+@@ -137,6 +138,25 @@
+             <version>1.7.3</version>
              <scope>runtime</scope>
          </dependency>
 +        <!-- Waterfall start - Console improvements - bring back slf4j-->
 +        <dependency>
 +            <groupId>org.slf4j</groupId>
 +            <artifactId>slf4j-jdk14</artifactId>
-+            <version>1.7.30</version>
++            <version>1.7.36</version>
 +            <scope>compile</scope>
 +        </dependency>
 +        <dependency>
 +            <groupId>net.minecrell</groupId>
 +            <artifactId>terminalconsoleappender</artifactId>
-+            <version>1.2.0</version>
++            <version>1.3.0</version>
 +        </dependency>
 +        <dependency>
 +            <groupId>org.jline</groupId>
 +            <artifactId>jline-terminal-jansi</artifactId>
-+            <version>3.12.1</version>
++            <version>3.21.0</version>
 +            <scope>runtime</scope>
 +        </dependency>
 +        <!-- Waterfall end -->
      </dependencies>
  
-     <build>
+     <!-- Waterfall start - copy license files into jar -->
 diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/console/WaterfallConsole.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/console/WaterfallConsole.java
 new file mode 100644
 index 00000000..765d24bc
@@ -350,7 +350,7 @@ index 00000000..765d24bc
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 1db22fc6..f281dfa1 100644
+index 613492ff..5f96a034 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -46,7 +46,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -417,8 +417,20 @@ index 1db22fc6..f281dfa1 100644
  
          pluginManager = new PluginManager( this );
          getPluginManager().registerCommand( null, new CommandReload() );
+@@ -494,10 +497,7 @@ public class BungeeCord extends ProxyServer
+ 
+         getLogger().info( "Thank you and goodbye" );
+         // Need to close loggers after last message!
+-        for ( Handler handler : getLogger().getHandlers() )
+-        {
+-            handler.close();
+-        }
++        org.apache.logging.log4j.LogManager.shutdown(); // Waterfall
+ 
+         // Unlock the thread before optionally calling system exit, which might invoke this function again.
+         // If that happens, the system will obtain the lock, and then see that isRunning == false and return without doing anything.
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index c2512dd5..0db3d76a 100644
+index a7e83434..774f9398 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -68,6 +68,9 @@ public class BungeeCordLauncher
@@ -536,7 +548,7 @@ index 7e465924..00000000
 -</project-shared-configuration>
 diff --git a/slf4j/pom.xml b/slf4j/pom.xml
 deleted file mode 100644
-index 293597b6..00000000
+index b995ba85..00000000
 --- a/slf4j/pom.xml
 +++ /dev/null
 @@ -1,35 +0,0 @@
@@ -548,13 +560,13 @@ index 293597b6..00000000
 -    <parent>
 -        <groupId>net.md-5</groupId>
 -        <artifactId>bungeecord-parent</artifactId>
--        <version>1.18-R0.1-SNAPSHOT</version>
+-        <version>1.19-R0.1-SNAPSHOT</version>
 -        <relativePath>../pom.xml</relativePath>
 -    </parent>
 -
 -    <groupId>net.md-5</groupId>
 -    <artifactId>bungeecord-slf4j</artifactId>
--    <version>1.18-R0.1-SNAPSHOT</version>
+-    <version>1.19-R0.1-SNAPSHOT</version>
 -    <packaging>jar</packaging>
 -
 -    <name>BungeeCord-SLF4J</name>
@@ -1604,5 +1616,5 @@ index 21a48df6..00000000
 -
 -}
 -- 
-2.34.1
+2.32.1 (Apple Git-133)
 

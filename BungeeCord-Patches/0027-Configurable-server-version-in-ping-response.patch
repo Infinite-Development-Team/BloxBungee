@@ -1,15 +1,15 @@
-From 7eb544678d32d6406cd6d3c30a575e408780cdfc Mon Sep 17 00:00:00 2001
+From aa8f96004757a18c6647bc237f7f7acfb6776db6 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Wed, 29 Jun 2016 13:56:57 -0500
 Subject: [PATCH] Configurable server version in ping response
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
-index 0829c81a..364673c0 100644
+index edbae4ea..749059ab 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -214,6 +214,13 @@ public interface ProxyConfig
-     // InfiniteBungee Options
+     // Waterfall Options
      //
  
 +    /**
@@ -22,12 +22,12 @@ index 0829c81a..364673c0 100644
      // Throttling options
  
      /**
-diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-index bb92e128..8b250b54 100644
---- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-+++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
+diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+index 91743f01..111404fb 100644
+--- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
++++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -1,12 +1,20 @@
- package io.github.infinitebungee.infinitebungee.conf;
+ package io.github.waterfallmc.waterfall.conf;
  
 +import com.google.common.base.Joiner;
  import net.md_5.bungee.conf.Configuration;
@@ -36,7 +36,7 @@ index bb92e128..8b250b54 100644
  
  import java.io.File;
  
- public class InfiniteBungeeConfiguration extends Configuration {
+ public class WaterfallConfiguration extends Configuration {
  
 +    /**
 +     * The supported versions displayed to the client
@@ -47,9 +47,9 @@ index bb92e128..8b250b54 100644
      /*
       * Throttling options
       * Helps prevent players from overloading the servers behind us
-@@ -26,11 +34,17 @@ public class InfiniteBungeeConfiguration extends Configuration {
+@@ -26,11 +34,17 @@ public class WaterfallConfiguration extends Configuration {
          super.load();
-         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
+         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
          config.load(false); // Load, but no permissions
 +        gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
          // Throttling options
@@ -66,7 +66,7 @@ index bb92e128..8b250b54 100644
      public int getTabThrottle() {
          return tabThrottle;
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index d3267780..6ae6332e 100644
+index 78023ceb..613492ff 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -689,7 +689,7 @@ public class BungeeCord extends ProxyServer
@@ -74,10 +74,10 @@ index d3267780..6ae6332e 100644
      public String getGameVersion()
      {
 -        return ProtocolConstants.SUPPORTED_VERSIONS.get( 0 ) + "-" + ProtocolConstants.SUPPORTED_VERSIONS.get( ProtocolConstants.SUPPORTED_VERSIONS.size() - 1 );
-+        return getConfig().getGameVersion(); // InfiniteBungee
++        return getConfig().getGameVersion(); // Waterfall
      }
  
      @Override
 -- 
-2.32.0 (Apple Git-132)
+2.32.1 (Apple Git-133)
 

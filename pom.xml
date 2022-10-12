@@ -10,7 +10,7 @@
 
     <name>InfiniteBungee-Super</name>
     <description>Super project for InfiniteBungee.</description>
-    <url>https://github.com/SeanMurillo/InfiniteBungee.git</url>
+    <url>https://github.com/Infinite-Development-Team/InfiniteBungee</url>
 
     <modules>
         <module>InfiniteBungee-Proxy</module>

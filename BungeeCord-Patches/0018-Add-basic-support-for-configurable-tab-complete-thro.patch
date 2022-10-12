@@ -1,15 +1,15 @@
-From 49c40437b40c9cde2afe7e084617506009385388 Mon Sep 17 00:00:00 2001
+From 5549a6cb55edef0ac5ae944830a6dfa4e62d6ace Mon Sep 17 00:00:00 2001
 From: Johannes Donath <johannesd@torchmind.com>
 Date: Sat, 4 Jul 2015 06:31:33 +0200
 Subject: [PATCH] Add basic support for configurable tab-complete throttling
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
-index a7eec3d6..b922abce 100644
+index 6495e7f2..b6845bc4 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ProxyConfig.java
 @@ -130,4 +130,21 @@ public interface ProxyConfig
-     // InfiniteBungee Options
+     // Waterfall Options
      //
  
 +    // Throttling options
@@ -30,13 +30,13 @@ index a7eec3d6..b922abce 100644
 +     */
 +    boolean isDisableModernTabLimiter();
  }
-diff --git a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-index be80e7aa..bb92e128 100644
---- a/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
-+++ b/proxy/src/main/java/io/github/infinitebungeemc/infinitebungee/conf/InfiniteBungeeConfiguration.java
+diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+index 741ebfde..91743f01 100644
+--- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
++++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -7,11 +7,37 @@ import java.io.File;
  
- public class InfiniteBungeeConfiguration extends Configuration {
+ public class WaterfallConfiguration extends Configuration {
  
 +    /*
 +     * Throttling options
@@ -55,7 +55,7 @@ index be80e7aa..bb92e128 100644
      @Override
      public void load() {
          super.load();
-         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
+         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
          config.load(false); // Load, but no permissions
 +        // Throttling options
 +        tabThrottle = config.getInt("throttling.tab_complete", tabThrottle);
@@ -73,10 +73,10 @@ index be80e7aa..bb92e128 100644
 +    }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 5d112a7c..0c1db9d0 100644
+index 5f4a2d45..147e5b20 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -40,6 +40,8 @@ public class UpstreamBridge extends PacketHandler
+@@ -42,6 +42,8 @@ public class UpstreamBridge extends PacketHandler
      private final ProxyServer bungee;
      private final UserConnection con;
  
@@ -85,11 +85,11 @@ index 5d112a7c..0c1db9d0 100644
      public UpstreamBridge(ProxyServer bungee, UserConnection con)
      {
          this.bungee = bungee;
-@@ -170,6 +172,20 @@ public class UpstreamBridge extends PacketHandler
+@@ -196,6 +198,20 @@ public class UpstreamBridge extends PacketHandler
      @Override
      public void handle(TabCompleteRequest tabComplete) throws Exception
      {
-+        // InfiniteBungee start - tab limiter
++        // Waterfall start - tab limiter
 +        if ( bungee.getConfig().getTabThrottle() > 0 &&
 +                ( con.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_13
 +                && !bungee.getConfig().isDisableModernTabLimiter()))
@@ -102,10 +102,10 @@ index 5d112a7c..0c1db9d0 100644
 +            lastTabCompletion = now;
 +        }
 +
-+        // InfiniteBungee end - tab limiter
++        // Waterfall end - tab limiter
          List<String> suggestions = new ArrayList<>();
          boolean isRegisteredCommand = false;
  
 -- 
-2.32.0 (Apple Git-132)
+2.32.1 (Apple Git-133)
 
