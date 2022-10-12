@@ -49,7 +49,7 @@ index 91743f01..111404fb 100644
       * Helps prevent players from overloading the servers behind us
 @@ -26,11 +34,17 @@ public class WaterfallConfiguration extends Configuration {
          super.load();
-         YamlConfig config = new YamlConfig(new File("waterfall.yml"));
+         YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
          config.load(false); // Load, but no permissions
 +        gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
          // Throttling options
