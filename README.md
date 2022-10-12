@@ -1,7 +1,7 @@
 InfiniteBungee
 =========
 
-InfiniteBungee is a fork of the well-known [Waterfall](https://github.com/SpigotMC/Waterfall) server teleportation suite.
+InfiniteBungee is a fork of the well-known [Waterfall]([https://github.com/SpigotMC/Waterfall](https://github.com/PaperMC/Waterfall)) server teleportation suite.
 
 InfiniteBungee focuses on three main areas:
 
