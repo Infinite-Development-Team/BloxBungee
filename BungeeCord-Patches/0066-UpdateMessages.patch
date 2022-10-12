@@ -10,7 +10,7 @@ index 76ad621f..98f8f894 100644
 +++ b/proxy/src/main/resources/messages.properties
 @@ -1,43 +1,43 @@
 -alert=\u00a78[\u00a74Alert\u00a78]\u00a7r 
-+aalert=\u00a76[\u00a7e!\u00a76]\u00a7r
++alert=\u00a76[\u00a7e!\u00a76]\u00a7r
  already_connected=\u00a7cYou are already connected to this server!
 -already_connected_proxy=\u00a7cYou are already connected to this proxy!
 +already_connected_proxy=\u00a7aYou are already connected to \u00a7bInfinite\u00a7a!
