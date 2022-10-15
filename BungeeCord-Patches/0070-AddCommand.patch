@@ -1,0 +1,22 @@
+From b6f7db13a520f844b7471e5f3b7794ac639334fe Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Sat, 15 Oct 2022 18:09:20 -0400
+Subject: [PATCH] AddCommand
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+index 1429163a..9c53c483 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+@@ -10,7 +10,7 @@ public class CommandInfiniteBungee extends Command
+ 
+     public CommandInfiniteBungee()
+     {
+-        super( "bungee" );
++        super( "infinitebungee" );
+     }
+ 
+     @Override
+-- 
+2.32.1 (Apple Git-133)
+

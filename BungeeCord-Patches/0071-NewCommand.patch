@@ -1,0 +1,21 @@
+From 42cc039eab7c8973d26206d96fa65c545fef73db Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Sat, 15 Oct 2022 18:27:07 -0400
+Subject: [PATCH] NewCommand
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index 01b05bf9..f09521e5 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -76,6 +76,7 @@ import net.md_5.bungee.chat.SelectorComponentSerializer;
+ import net.md_5.bungee.chat.TextComponentSerializer;
+ import net.md_5.bungee.chat.TranslatableComponentSerializer;
+ import net.md_5.bungee.command.CommandBungee;
++import net.md_5.bungee.command.CommandInfiniteBungee;
+ import net.md_5.bungee.command.CommandEnd;
+ import net.md_5.bungee.command.CommandIP;
+ import net.md_5.bungee.command.CommandPerms;
+-- 
+2.32.1 (Apple Git-133)
+
