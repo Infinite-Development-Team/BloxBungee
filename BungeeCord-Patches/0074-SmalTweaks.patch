@@ -26,7 +26,7 @@ index a5b8a4c9..5dc6ed50 100644
      public CommandServer()
      {
 -        super( "server", "infinitebungee.command.server" );
-+        super( "connect", "infinitebungee.command.server", "connection" );
++        super( "server", "infinitebungee.command.server", "connection" );
      }
  
      @Override
