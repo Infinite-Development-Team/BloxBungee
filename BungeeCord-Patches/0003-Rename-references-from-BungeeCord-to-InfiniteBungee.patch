@@ -1,4 +1,4 @@
-From be1dfe7d12a8895f50621c93b720468b17ff32e1 Mon Sep 17 00:00:00 2001
+From 454466cf0a186a2aa48ee3eb65f99fb0d39ab994 Mon Sep 17 00:00:00 2001
 From: Tux <write@imaginarycode.com>
 Date: Thu, 19 May 2016 11:28:45 -0700
 Subject: [PATCH] Rename references from BungeeCord to InfiniteBungee
@@ -18,19 +18,19 @@ index f1ccd4f6..d044b68f 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index c3bb3afa..4c6b9954 100644
+index c2fe9a40..c9500d93 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -187,7 +187,7 @@ public class BungeeCord extends ProxyServer
+@@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
 -        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use BungeeCord in directory with ! in path." );
 +        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use InfiniteBungee in directory with ! in path." );
  
-         try
-         {
-@@ -528,7 +528,7 @@ public class BungeeCord extends ProxyServer
+         reloadMessages();
+ 
+@@ -538,7 +538,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {

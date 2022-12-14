@@ -1,11 +1,11 @@
-From 9f7686aab4e3a7b68aeab864e1b047dda6d44ad3 Mon Sep 17 00:00:00 2001
+From a726ce41b25e6a71b767db11f3084d52304e8d43 Mon Sep 17 00:00:00 2001
 From: theminecoder <theminecoder.dev@gmail.com>
 Date: Sun, 19 Jul 2020 10:18:23 +1000
 Subject: [PATCH] Add auth url option
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 5331518b..5ee47b6a 100644
+index 600037f4..c3e21e92 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -76,6 +76,8 @@ import net.md_5.bungee.util.QuietException;
@@ -17,7 +17,7 @@ index 5331518b..5ee47b6a 100644
      private final BungeeCord bungee;
      private ChannelWrapper ch;
      @Getter
-@@ -498,7 +500,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -499,7 +501,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
          String encodedHash = URLEncoder.encode( new BigInteger( sha.digest() ).toString( 16 ), "UTF-8" );
  
          String preventProxy = ( BungeeCord.getInstance().config.isPreventProxyConnections() && getSocketAddress() instanceof InetSocketAddress ) ? "&ip=" + URLEncoder.encode( getAddress().getAddress().getHostAddress(), "UTF-8" ) : "";

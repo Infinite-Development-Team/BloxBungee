@@ -1,4 +1,4 @@
-From 8bb159b13aadfd64cf2532e66bf53cbee9bf7bbb Mon Sep 17 00:00:00 2001
+From 08d4cf8e2b8cddc4719b559abae5147990259c5f Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Fri, 9 Jul 2021 13:20:36 +0100
 Subject: [PATCH] Don't bother locking to fetch a v4 UUID from the offline
@@ -6,10 +6,10 @@ Subject: [PATCH] Don't bother locking to fetch a v4 UUID from the offline
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index cd69bed3..6d091959 100644
+index 4b499398..9592b245 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -610,6 +610,11 @@ public class BungeeCord extends ProxyServer
+@@ -634,6 +634,11 @@ public class BungeeCord extends ProxyServer
  
      public UserConnection getPlayerByOfflineUUID(UUID name)
      {

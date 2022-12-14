@@ -1,14 +1,14 @@
-From 6bd103d3efdfc0ea9e24413fe911446ff7b275df Mon Sep 17 00:00:00 2001
+From fef71ed11571f1fcf981f7d8e5a7fd930726b4d0 Mon Sep 17 00:00:00 2001
 From: SeanMurillo <sean.d.murillo@gmail.com>
 Date: Sat, 15 Oct 2022 19:08:36 -0400
 Subject: [PATCH] NewCommands
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index f09521e5..22cfb920 100644
+index 64529869..475aca57 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -79,6 +79,8 @@ import net.md_5.bungee.command.CommandBungee;
+@@ -81,6 +81,8 @@ import net.md_5.bungee.command.CommandBungee;
  import net.md_5.bungee.command.CommandInfiniteBungee;
  import net.md_5.bungee.command.CommandEnd;
  import net.md_5.bungee.command.CommandIP;
@@ -17,7 +17,7 @@ index f09521e5..22cfb920 100644
  import net.md_5.bungee.command.CommandPerms;
  import net.md_5.bungee.command.CommandReload;
  import net.md_5.bungee.command.ConsoleCommandSender;
-@@ -229,6 +231,8 @@ public class BungeeCord extends ProxyServer
+@@ -238,6 +240,8 @@ public class BungeeCord extends ProxyServer
          getPluginManager().registerCommand( null, new CommandReload() );
          getPluginManager().registerCommand( null, new CommandEnd() );
          getPluginManager().registerCommand( null, new CommandIP() );
@@ -58,26 +58,26 @@ index 03feeb39..34075ff8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
 @@ -15,7 +15,7 @@ public class CommandEnd extends Command
- 
+
      public CommandEnd()
      {
 -        super( "end", "bungeecord.command.end" );
 +        super( "end", "infinitebungee.command.end" );
      }
- 
+
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 index 1fd5a546..2f706f53 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 @@ -9,7 +9,7 @@ public class CommandIP extends PlayerCommand
- 
+
      public CommandIP()
      {
 -        super( "ip", "bungeecord.command.ip" );
 +        super( "ip", "infinitebungee.command.ip" );
      }
- 
+
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
 new file mode 100644
@@ -111,14 +111,13 @@ index f122d9aa..0af18cc6 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 @@ -11,7 +11,7 @@ public class CommandReload extends Command
- 
+
      public CommandReload()
      {
 -        super( "greload", "bungeecord.command.reload" );
 +        super( "greload", "infinitebungee.command.reload" );
      }
- 
-     @Override
--- 
-2.32.1 (Apple Git-133)
 
+     @Override
+--
+2.32.1 (Apple Git-133)

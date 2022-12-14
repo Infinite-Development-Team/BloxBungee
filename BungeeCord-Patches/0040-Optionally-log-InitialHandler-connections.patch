@@ -1,4 +1,4 @@
-From 3d303da2efe706341023b888456798adf3a5c7a6 Mon Sep 17 00:00:00 2001
+From 432e60c0809e86105ad313284886db2073314853 Mon Sep 17 00:00:00 2001
 From: Gabriele C <sgdc3.mail@gmail.com>
 Date: Thu, 8 Feb 2018 19:10:52 +0100
 Subject: [PATCH] Optionally log InitialHandler connections
@@ -23,7 +23,7 @@ index 6141128b..e0baca9c 100644
       * The supported versions
       *
 diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-index ef44d334..4ff8da6d 100644
+index 6a373812..aaa2bd10 100644
 --- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 +++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -9,6 +9,13 @@ import java.io.File;
@@ -61,10 +61,10 @@ index ef44d334..4ff8da6d 100644
      public String getGameVersion() {
          return gameVersion;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 2df797fa..1dc2ad3c 100644
+index 059d1837..707232a5 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -354,7 +354,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -355,7 +355,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                  break;
              case 2:
                  // Login

@@ -1,4 +1,4 @@
-From 5a534acf23122c5b346698889a7cf972229a90c8 Mon Sep 17 00:00:00 2001
+From 9df1b8ed82ea84591743755a2adf0c75181aeac6 Mon Sep 17 00:00:00 2001
 From: Techcable <Techcable@techcable.net>
 Date: Tue, 25 Oct 2016 11:58:37 -0400
 Subject: [PATCH] Add Waterfall configuration files
@@ -20,7 +20,7 @@ index 2e41b4c4..6495e7f2 100644
  }
 diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 new file mode 100644
-index 00000000..741ebfde
+index 00000000..7f465663
 --- /dev/null
 +++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -0,0 +1,17 @@
@@ -42,7 +42,7 @@ index 00000000..741ebfde
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 4c6b9954..7c4b26ed 100644
+index c9500d93..c776836d 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -10,6 +10,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -53,14 +53,14 @@ index 4c6b9954..7c4b26ed 100644
  import io.netty.bootstrap.ServerBootstrap;
  import io.netty.channel.Channel;
  import io.netty.channel.ChannelException;
-@@ -111,7 +112,7 @@ public class BungeeCord extends ProxyServer
+@@ -114,7 +115,7 @@ public class BungeeCord extends ProxyServer
       * Configuration.
       */
      @Getter
 -    public final Configuration config = new Configuration();
 +    public final Configuration config = new WaterfallConfiguration();
      /**
-      * Localization bundle.
+      * Localization formats.
       */
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/Configuration.java b/proxy/src/main/java/net/md_5/bungee/conf/Configuration.java
 index 54c3223c..54a6cb38 100644

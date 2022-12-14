@@ -1,4 +1,4 @@
-From 86d4c00f4bb6a6bc3ff95dc25675c88d96ce26d4 Mon Sep 17 00:00:00 2001
+From 90243b8558402cc06eb87e32c54bfbbb27048fac Mon Sep 17 00:00:00 2001
 From: xDark <aleshkailyashevich@gmail.com>
 Date: Fri, 31 May 2019 08:11:31 +0300
 Subject: [PATCH] Allow to disable tablist rewrite
@@ -20,7 +20,7 @@ index 4a198ee9..d69463f0 100644
 +    boolean isDisableTabListRewrite();
  }
 diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-index e860214f..b88e3c8a 100644
+index 97fc5f3f..17b46941 100644
 --- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 +++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -43,6 +43,7 @@ public class WaterfallConfiguration extends Configuration {
@@ -50,10 +50,10 @@ index e860214f..b88e3c8a 100644
 +    }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index a4f242b2..9dfb11e9 100644
+index 490171c4..0c9cfb02 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-@@ -168,8 +168,14 @@ public class DownstreamBridge extends PacketHandler
+@@ -170,8 +170,14 @@ public class DownstreamBridge extends PacketHandler
      @Override
      public void handle(PlayerListItem playerList) throws Exception
      {

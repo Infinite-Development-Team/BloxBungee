@@ -1,4 +1,4 @@
-From 4ecdff6eb9ff900d071013d0c02a65b8114cc70c Mon Sep 17 00:00:00 2001
+From 9146c3be685a0b94d6424022eda23fb6628bbee7 Mon Sep 17 00:00:00 2001
 From: FivePB <admin@fivepb.me>
 Date: Tue, 16 Nov 2021 21:15:32 +0100
 Subject: [PATCH] Configurable plugin messaging limits
@@ -31,7 +31,7 @@ index d69463f0..469fe0e1 100644
 +    int getPluginChannelNameLimit();
  }
 diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
-index b88e3c8a..da0efa36 100644
+index 17b46941..8f81c002 100644
 --- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 +++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
 @@ -45,6 +45,23 @@ public class WaterfallConfiguration extends Configuration {
@@ -83,10 +83,10 @@ index b88e3c8a..da0efa36 100644
 +    }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 5ee47b6a..4a8cb3df 100644
+index c3e21e92..297fa526 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -754,9 +754,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -755,9 +755,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
  
              for ( String id : content.split( "\0" ) )
              {

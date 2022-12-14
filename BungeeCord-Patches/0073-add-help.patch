@@ -1,4 +1,4 @@
-From 8c095c08e4740181682e99cd9b1f8ef2ab3a2986 Mon Sep 17 00:00:00 2001
+From d1faf930316f71deb8ed318927c600dd3ef950bc Mon Sep 17 00:00:00 2001
 From: SeanMurillo <sean.d.murillo@gmail.com>
 Date: Sat, 15 Oct 2022 21:31:54 -0400
 Subject: [PATCH] add/help
@@ -83,10 +83,10 @@ index 698b420f..a5b8a4c9 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 22cfb920..36f41699 100644
+index 475aca57..f65ae914 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -79,6 +79,7 @@ import net.md_5.bungee.command.CommandBungee;
+@@ -81,6 +81,7 @@ import net.md_5.bungee.command.CommandBungee;
  import net.md_5.bungee.command.CommandInfiniteBungee;
  import net.md_5.bungee.command.CommandEnd;
  import net.md_5.bungee.command.CommandIP;
@@ -94,7 +94,7 @@ index 22cfb920..36f41699 100644
  import net.md_5.bungee.command.CommandDiscord;
  import net.md_5.bungee.command.CommandInfinite;
  import net.md_5.bungee.command.CommandPerms;
-@@ -231,6 +232,7 @@ public class BungeeCord extends ProxyServer
+@@ -240,6 +241,7 @@ public class BungeeCord extends ProxyServer
          getPluginManager().registerCommand( null, new CommandReload() );
          getPluginManager().registerCommand( null, new CommandEnd() );
          getPluginManager().registerCommand( null, new CommandIP() );
@@ -117,7 +117,7 @@ index 3e707058..5a368d19 100644
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
 new file mode 100644
-index 00000000..3959127b
+index 00000000..8b2807f6
 --- /dev/null
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
 @@ -0,0 +1,21 @@
@@ -139,7 +139,7 @@ index 00000000..3959127b
 +    @Override
 +    public void execute(CommandSender sender, String[] args)
 +    {
-+        sender.sendMessage( ChatColor.AQUA + "For commands help please vistit help.playinfinite.net" );
++        sender.sendMessage( ChatColor.AQUA + "For commands help please vistit help.infinitenetworkmc.com" );
 +    }
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java b/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java

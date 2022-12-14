@@ -1,4 +1,4 @@
-From 0b7ba172b7a8cd8e23ac7c9aa73e3ebb86b41230 Mon Sep 17 00:00:00 2001
+From d7a5e70149a05c07e71c534c601a2d05181e8054 Mon Sep 17 00:00:00 2001
 From: theminecoder <theminecoder.dev@gmail.com>
 Date: Wed, 22 Apr 2020 14:00:44 +1000
 Subject: [PATCH] Add exception reporting event
@@ -642,7 +642,7 @@ index fbfbd546..ae85a1d4 100644
  
      @EventHandler
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 7cd6ae42..cd69bed3 100644
+index 9b13fa66..4b499398 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -11,6 +11,8 @@ import com.google.gson.Gson;
@@ -654,7 +654,7 @@ index 7cd6ae42..cd69bed3 100644
  import io.netty.bootstrap.ServerBootstrap;
  import io.netty.channel.Channel;
  import io.netty.channel.ChannelException;
-@@ -476,7 +478,11 @@ public class BungeeCord extends ProxyServer
+@@ -485,7 +487,11 @@ public class BungeeCord extends ProxyServer
                  }
              } catch ( Throwable t )
              {

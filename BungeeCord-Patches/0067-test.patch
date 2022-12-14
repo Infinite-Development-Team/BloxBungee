@@ -1,14 +1,14 @@
-From d45958ebfd0d0ca43cb31c7bab7d1f434dc152ea Mon Sep 17 00:00:00 2001
+From 54ac4677ed3acbfa838efe7b1c708a11b82bccf7 Mon Sep 17 00:00:00 2001
 From: SeanMurillo <sean.d.murillo@gmail.com>
 Date: Sat, 15 Oct 2022 17:57:41 -0400
 Subject: [PATCH] test
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 6d091959..01b05bf9 100644
+index 9592b245..80ed6e33 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -228,6 +228,7 @@ public class BungeeCord extends ProxyServer
+@@ -237,6 +237,7 @@ public class BungeeCord extends ProxyServer
          getPluginManager().registerCommand( null, new CommandReload() );
          getPluginManager().registerCommand( null, new CommandEnd() );
          getPluginManager().registerCommand( null, new CommandIP() );
