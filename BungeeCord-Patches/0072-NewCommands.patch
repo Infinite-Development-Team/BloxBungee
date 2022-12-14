@@ -1,4 +1,4 @@
-From fef71ed11571f1fcf981f7d8e5a7fd930726b4d0 Mon Sep 17 00:00:00 2001
+From f56d1fd109ffb44b4e413ef2985c8f73604a3089 Mon Sep 17 00:00:00 2001
 From: SeanMurillo <sean.d.murillo@gmail.com>
 Date: Sat, 15 Oct 2022 19:08:36 -0400
 Subject: [PATCH] NewCommands
@@ -58,26 +58,26 @@ index 03feeb39..34075ff8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
 @@ -15,7 +15,7 @@ public class CommandEnd extends Command
-
+ 
      public CommandEnd()
      {
 -        super( "end", "bungeecord.command.end" );
 +        super( "end", "infinitebungee.command.end" );
      }
-
+ 
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 index 1fd5a546..2f706f53 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
 @@ -9,7 +9,7 @@ public class CommandIP extends PlayerCommand
-
+ 
      public CommandIP()
      {
 -        super( "ip", "bungeecord.command.ip" );
 +        super( "ip", "infinitebungee.command.ip" );
      }
-
+ 
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
 new file mode 100644
@@ -111,13 +111,14 @@ index f122d9aa..0af18cc6 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 @@ -11,7 +11,7 @@ public class CommandReload extends Command
-
+ 
      public CommandReload()
      {
 -        super( "greload", "bungeecord.command.reload" );
 +        super( "greload", "infinitebungee.command.reload" );
      }
-
+ 
      @Override
---
+-- 
 2.32.1 (Apple Git-133)
+
