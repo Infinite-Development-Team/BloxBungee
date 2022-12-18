@@ -1,0 +1,1288 @@
+From f627392b99308af1f10309c6383ff11cfca6c18c Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Sun, 18 Dec 2022 00:18:40 -0500
+Subject: [PATCH] FixError
+
+
+diff --git a/api/pom.xml b/api/pom.xml
+index 5d21fd99..7595047a 100644
+--- a/api/pom.xml
++++ b/api/pom.xml
+@@ -4,42 +4,42 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-api</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-api</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-API</name>
++    <name>InfiniteBungee-API</name>
+     <description>API implemented by the Elastic Portal Suite</description>
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-config</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-config</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-event</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-event</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-protocol</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-protocol</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+@@ -76,11 +76,5 @@
+             <version>1.33</version>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- Waterfall - Add SLF4J -->
+-        <dependency>
+-            <groupId>org.slf4j</groupId>
+-            <artifactId>slf4j-api</artifactId>
+-            <version>1.7.25</version>
+-        </dependency>
+     </dependencies>
+ </project>
+diff --git a/api/src/main/java/net/md_5/bungee/api/plugin/Plugin.java b/api/src/main/java/net/md_5/bungee/api/plugin/Plugin.java
+index 3d1e9a3a..9660234d 100644
+--- a/api/src/main/java/net/md_5/bungee/api/plugin/Plugin.java
++++ b/api/src/main/java/net/md_5/bungee/api/plugin/Plugin.java
+@@ -44,13 +44,6 @@ public class Plugin
+         // init( proxy, description );
+     }
+ 
+-    // Waterfall start - Allow plugins to use SLF4J for logging
+-    public org.slf4j.Logger getSLF4JLogger() {
+-        return org.slf4j.LoggerFactory.getLogger(logger.getName());
+-    }
+-    // Waterfall end
+-
+-
+     /**
+      * Called when the plugin has just been loaded. Most of the proxy will not
+      * be initialized, so only use it for registering
+diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
+index 688f1b99..5284f375 100644
+--- a/bootstrap/pom.xml
++++ b/bootstrap/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-bootstrap</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-bootstrap</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Bootstrap</name>
+-    <description>Java 1.6 loader for Waterfall</description>
++    <name>InfiniteBungee-Bootstrap</name>
++    <description>Java 1.6 loader for InfiniteBungee</description>
+ 
+     <properties>
+         <maven.deploy.skip>true</maven.deploy.skip>
+@@ -29,15 +29,15 @@
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-proxy</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-proxy</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+     </dependencies>
+ 
+     <build>
+-        <finalName>Waterfall</finalName>
++        <finalName>InfiniteBungee</finalName>
+         <plugins>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+diff --git a/chat/pom.xml b/chat/pom.xml
+index 003b3f6c..78f8938c 100644
+--- a/chat/pom.xml
++++ b/chat/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-chat</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-chat</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Chat</name>
+-    <description>Minecraft JSON chat API intended for use with Waterfall</description>
++    <name>InfiniteBungee-Chat</name>
++    <description>Minecraft JSON chat API intended for use with InfiniteBungee</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/config/pom.xml b/config/pom.xml
+index 91da386a..af9cc709 100644
+--- a/config/pom.xml
++++ b/config/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-config</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-config</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Config</name>
+-    <description>Generic java configuration API intended for use with Waterfall</description>
++    <name>InfiniteBungee-Config</name>
++    <description>Generic java configuration API intended for use with InfiniteBungee</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/event/pom.xml b/event/pom.xml
+index ac85fc82..7e924967 100644
+--- a/event/pom.xml
++++ b/event/pom.xml
+@@ -4,17 +4,17 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-event</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-event</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Event</name>
+-    <description>Generic java event dispatching API intended for use with Waterfall.</description>
++    <name>InfiniteBungee-Event</name>
++    <description>Generic java event dispatching API intended for use with InfiniteBungee.</description>
+ </project>
+diff --git a/log/pom.xml b/log/pom.xml
+index d61dba6f..53086760 100644
+--- a/log/pom.xml
++++ b/log/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-log</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-log</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Log</name>
+-    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
++    <name>InfiniteBungee-Log</name>
++    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with InfiniteBungee and Minecraft related applications.</description>
+ 
+     <dependencies>
+         <dependency>
+@@ -26,8 +26,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
+index d703d6d2..d044b68f 100644
+--- a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
++++ b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
+@@ -12,7 +12,7 @@ public class LogDispatcher extends Thread
+ 
+     public LogDispatcher(BungeeLogger logger)
+     {
+-        super( "Waterfall Logger Thread" );
++        super( "InfiniteBungee Logger Thread" );
+         this.logger = logger;
+     }
+ 
+diff --git a/log4j/pom.xml b/log4j/pom.xml
+index fb091698..eee281eb 100644
+--- a/log4j/pom.xml
++++ b/log4j/pom.xml
+@@ -3,19 +3,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-log4j</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-log4j</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Log</name>
+-    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
++    <name>InfiniteBungee-Log</name>
++    <description>Simplistic and performant Log4j2 based logger and console API designed for use with InfiniteBungee and Minecraft related applications.</description>
+ 
+     <properties>
+         <log4j2.version>2.17.2</log4j2.version>
+@@ -38,12 +38,6 @@
+             <artifactId>log4j-jul</artifactId>
+             <version>${log4j2.version}</version>
+         </dependency>
+-        <dependency>
+-            <groupId>org.apache.logging.log4j</groupId>
+-            <artifactId>log4j-slf4j-impl</artifactId>
+-            <version>${log4j2.version}</version>
+-            <scope>runtime</scope>
+-        </dependency>
+         <dependency>
+             <groupId>com.lmax</groupId>
+             <artifactId>disruptor</artifactId>
+diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
+index 64d197ce..6ff939e8 100644
+--- a/module/cmd-alert/pom.xml
++++ b/module/cmd-alert/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-alert</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-alert</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
+index 55d2f7b8..5e24c2c1 100644
+--- a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
++++ b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
+@@ -11,7 +11,7 @@ public class CommandAlert extends Command
+ 
+     public CommandAlert()
+     {
+-        super( "alert", "bungeecord.command.alert" );
++        super( "alert", "infinitebungee.command.alert" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
+index c4ad20de..f7562482 100644
+--- a/module/cmd-find/pom.xml
++++ b/module/cmd-find/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-find</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-find</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java b/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
+index 7ea239ac..0f9ba4a2 100644
+--- a/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
++++ b/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
+@@ -10,7 +10,7 @@ public class CommandFind extends PlayerCommand
+ 
+     public CommandFind()
+     {
+-        super( "find", "bungeecord.command.find" );
++        super( "find", "infinitebungee.command.find" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-kick/pom.xml b/module/cmd-kick/pom.xml
+index 17d3dc71..9bfc7605 100644
+--- a/module/cmd-kick/pom.xml
++++ b/module/cmd-kick/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-kick</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-kick</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java b/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
+index 6dab5cc8..e5852a95 100644
+--- a/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
++++ b/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
+@@ -18,7 +18,7 @@ public class CommandKick extends Command implements TabExecutor
+ 
+     public CommandKick()
+     {
+-        super( "gkick", "bungeecord.command.kick" );
++        super( "gkick", "infinitebungee.command.kick" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
+index 9e22202d..1550611e 100644
+--- a/module/cmd-list/pom.xml
++++ b/module/cmd-list/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-list</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-list</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java b/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
+index c2227110..69d453ba 100644
+--- a/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
++++ b/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
+@@ -19,7 +19,7 @@ public class CommandList extends Command
+ 
+     public CommandList()
+     {
+-        super( "glist", "bungeecord.command.list" );
++        super( "glist", "infinitebungee.command.list" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
+index 5326f925..1da489a6 100644
+--- a/module/cmd-send/pom.xml
++++ b/module/cmd-send/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-send</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-send</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java b/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
+index f59f9457..eff20de1 100644
+--- a/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
++++ b/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
+@@ -93,7 +93,7 @@ public class CommandSend extends Command implements TabExecutor
+ 
+     public CommandSend()
+     {
+-        super( "send", "bungeecord.command.send" );
++        super( "send", "infinitebungee.command.send" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
+index 86faab24..1037d16e 100644
+--- a/module/cmd-server/pom.xml
++++ b/module/cmd-server/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-server</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module-cmd-server</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java b/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
+index 698b420f..a5b8a4c9 100644
+--- a/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
++++ b/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
+@@ -26,7 +26,7 @@ public class CommandServer extends Command implements TabExecutor
+ 
+     public CommandServer()
+     {
+-        super( "server", "bungeecord.command.server" );
++        super( "server", "infinitebungee.command.server" );
+     }
+ 
+     @Override
+diff --git a/module/pom.xml b/module/pom.xml
+index 0de7979e..d0e6d5c1 100644
+--- a/module/pom.xml
++++ b/module/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-module</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+-    <name>Waterfall Modules</name>
+-    <description>Parent project for all Waterfall modules.</description>
++    <name>InfiniteBungee Modules</name>
++    <description>Parent project for all InfiniteBungee modules.</description>
+ 
+     <modules>
+         <module>cmd-alert</module>
+@@ -29,15 +29,15 @@
+     </modules>
+ 
+     <properties>
+-        <module.author>WaterfallMC</module.author>
++        <module.author>InfiniteBungeeMC</module.author>
+         <maven.deploy.skip>true</maven.deploy.skip>
+         <maven.javadoc.skip>true</maven.javadoc.skip>
+     </properties>
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
+index 8aff53bd..4b3f42c9 100644
+--- a/module/reconnect-yaml/pom.xml
++++ b/module/reconnect-yaml/pom.xml
+@@ -4,8 +4,8 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+diff --git a/native/pom.xml b/native/pom.xml
+index caa4c4cb..3b791ecd 100644
+--- a/native/pom.xml
++++ b/native/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-native</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-native</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Native</name>
+-    <description>Optional native code to speed up and enhance Waterfall functionality.</description>
++    <name>InfiniteBungee-Native</name>
++    <description>Optional native code to speed up and enhance InfiniteBungee functionality.</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/pom.xml b/pom.xml
+index 076271b2..9febb0bf 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -5,23 +5,23 @@
+ 
+     <parent>
+         <groupId>io.github.infinitebungee</groupId>
+-        <artifactId>InfiniteBungee-super</artifactId>
++        <artifactId>infinitebungee-super</artifactId>
+         <version>dev-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+     <groupId>io.github.infinitebungee</groupId>
+-    <artifactId>InfiniteBungee-parent</artifactId>
++    <artifactId>infinitebungee-parent</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+     <name>InfiniteBungee-Parent</name>
+     <description>Parent project for all InfiniteBungee modules.</description>
+-    <url>https://github.com/infinitebungee/InfiniteBungee</url>
++    <url>https://github.com/InfiniteBungeeMC/InfiniteBungee</url>
+     <inceptionYear>2015</inceptionYear>
+     <organization>
+-        <name>infinitebungee</name>
+-        <url>https://github.com/infinitebungee</url>
++        <name>InfiniteBungeeMC</name>
++        <url>https://github.com/InfiniteBungeeMC</url>
+     </organization>
+     <licenses>
+         <license>
+@@ -66,9 +66,9 @@
+     </modules>
+ 
+     <scm>
+-        <connection>scm:git:git@github.com:com:infinitebungee/InfiniteBungee.git</connection>
+-        <developerConnection>scm:git:git@github.com:infinitebungee/InfiniteBungee.git</developerConnection>
+-        <url>git@github.com:infinitebungee/InfiniteBungee.git</url>
++        <connection>scm:git:git@github.com:com:InfiniteBungeeMC/InfiniteBungee.git</connection>
++        <developerConnection>scm:git:git@github.com:InfiniteBungeeMC/InfiniteBungee.git</developerConnection>
++        <url>git@github.com:InfiniteBungeeMC/InfiniteBungee.git</url>
+     </scm>
+     <issueManagement>
+         <system>GitHub</system>
+diff --git a/protocol/pom.xml b/protocol/pom.xml
+index 93ae5952..14d6bcc6 100644
+--- a/protocol/pom.xml
++++ b/protocol/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-protocol</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-protocol</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Protocol</name>
+-    <description>Minimal implementation of the Minecraft protocol for use in Waterfall</description>
++    <name>InfiniteBungee-Protocol</name>
++    <description>Minimal implementation of the Minecraft protocol for use in InfiniteBungee</description>
+ 
+     <!-- We really shouldn't depend on external repositories, but at least this is the Central staging one -->
+     <repositories>
+@@ -41,8 +41,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/proxy/pom.xml b/proxy/pom.xml
+index 1036a2e7..fc3db18f 100644
+--- a/proxy/pom.xml
++++ b/proxy/pom.xml
+@@ -4,18 +4,18 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-proxy</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-proxy</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Proxy</name>
++    <name>InfiniteBungee-Proxy</name>
+     <description>Proxy component of the Elastic Portal Suite</description>
+ 
+     <properties>
+@@ -36,7 +36,7 @@
+             <version>${netty.version}</version>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- Waterfall Start - add Netty DNS resolver -->
++        <!-- InfiniteBungee Start - add Netty DNS resolver -->
+         <dependency>
+             <groupId>io.netty</groupId>
+             <artifactId>netty-resolver-dns</artifactId>
+@@ -49,7 +49,7 @@
+             <version>${netty.version}</version>
+             <classifier>osx-x86_64</classifier>
+         </dependency>
+-        <!-- Waterfall End -->
++        <!-- InfiniteBungee End -->
+         <dependency>
+             <groupId>io.netty</groupId>
+             <artifactId>netty-handler</artifactId>
+@@ -71,42 +71,42 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-log4j</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-log4j</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-native</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-native</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-protocol</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-protocol</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-query</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-query</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- // Waterfall - We already bundle an slf4j impl
++        <!-- // InfiniteBungee - We already bundle an slf4j impl
+         <dependency>
+             <groupId>net.md-5</groupId>
+             <artifactId>bungeecord-slf4j</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+-        </dependency> // Waterfall - We already bundle an slf4j impl -->
++        </dependency> // InfiniteBungee - We already bundle an slf4j impl -->
+         <dependency>
+             <groupId>net.sf.jopt-simple</groupId>
+             <artifactId>jopt-simple</artifactId>
+@@ -138,7 +138,7 @@
+             <version>1.7.3</version>
+             <scope>runtime</scope>
+         </dependency>
+-        <!-- Waterfall start - Console improvements - bring back slf4j-->
++        <!-- InfiniteBungee start - Console improvements - bring back slf4j-->
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-jdk14</artifactId>
+@@ -156,10 +156,10 @@
+             <version>3.21.0</version>
+             <scope>runtime</scope>
+         </dependency>
+-        <!-- Waterfall end -->
++        <!-- InfiniteBungee end -->
+     </dependencies>
+ 
+-    <!-- Waterfall start - copy license files into jar -->
++    <!-- InfiniteBungee start - copy license files into jar -->
+     <build>
+         <resources>
+             <resource>
+@@ -179,5 +179,5 @@
+             </resource>
+         </resources>
+     </build>
+-    <!-- Waterfall end -->
++    <!-- InfiniteBungee end -->
+ </project>
+diff --git a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+index da0efa36..8f81c002 100644
+--- a/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
++++ b/proxy/src/main/java/io/github/waterfallmc/waterfall/conf/WaterfallConfiguration.java
+@@ -65,7 +65,7 @@ public class WaterfallConfiguration extends Configuration {
+     @Override
+     public void load() {
+         super.load();
+-        YamlConfig config = new YamlConfig(new File("waterfall.yml"));
++        YamlConfig config = new YamlConfig(new File("infinitebungee.yml"));
+         config.load(false); // Load, but no permissions
+         logInitialHandlerConnections = config.getBoolean( "log_initial_handler_connections", logInitialHandlerConnections );
+         gameVersion = config.getString("game_version", "").isEmpty() ? Joiner.on(", ").join(ProtocolConstants.SUPPORTED_VERSIONS) : config.getString("game_version", "");
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index e0fcd8fb..3d2505eb 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -78,8 +78,13 @@ import net.md_5.bungee.chat.SelectorComponentSerializer;
+ import net.md_5.bungee.chat.TextComponentSerializer;
+ import net.md_5.bungee.chat.TranslatableComponentSerializer;
+ import net.md_5.bungee.command.CommandBungee;
++import net.md_5.bungee.command.CommandInfiniteBungee;
+ import net.md_5.bungee.command.CommandEnd;
+ import net.md_5.bungee.command.CommandIP;
++import net.md_5.bungee.command.CommandBugs;
++import net.md_5.bungee.command.CommandHelp;
++import net.md_5.bungee.command.CommandDiscord;
++import net.md_5.bungee.command.CommandInfinite;
+ import net.md_5.bungee.command.CommandPerms;
+ import net.md_5.bungee.command.CommandReload;
+ import net.md_5.bungee.command.ConsoleCommandSender;
+@@ -189,7 +194,7 @@ public class BungeeCord extends ProxyServer
+     public BungeeCord() throws IOException
+     {
+         // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
+-        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use Waterfall in directory with ! in path." );
++        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use InfiniteBungee in directory with ! in path." );
+ 
+         reloadMessages();
+ 
+@@ -237,6 +242,11 @@ public class BungeeCord extends ProxyServer
+         getPluginManager().registerCommand( null, new CommandReload() );
+         getPluginManager().registerCommand( null, new CommandEnd() );
+         getPluginManager().registerCommand( null, new CommandIP() );
++        getPluginManager().registerCommand( null, new CommandHelp() );
++        getPluginManager().registerCommand( null, new CommandBugs() );
++        getPluginManager().registerCommand( null, new CommandDiscord() );
++        getPluginManager().registerCommand( null, new CommandInfinite() );
++        getPluginManager().registerCommand( null, new CommandInfiniteBungee() );
+         getPluginManager().registerCommand( null, new CommandBungee() );
+         getPluginManager().registerCommand( null, new CommandPerms() );
+ 
+@@ -545,7 +555,7 @@ public class BungeeCord extends ProxyServer
+     @Override
+     public String getName()
+     {
+-        return "Waterfall";
++        return "Infinite";
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
+index 96a9998d..774f9398 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
+@@ -56,14 +56,14 @@ public class BungeeCordLauncher
+                 System.err.println( "*** Hey! This build is potentially outdated :( ***" );
+                 System.err.println( "*** Please check for a new build from https://papermc.io/downloads ***" );
+                 System.err.println( "*** Should this build be outdated, you will get NO support for it. ***" );
+-                //System.err.println( "*** Server will start in 10 seconds ***" );
+-                //Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
++                System.err.println( "*** Server will start in 10 seconds ***" );
++                Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
+             }
+         }
+ 
+         BungeeCord bungee = new BungeeCord();
+         ProxyServer.setInstance( bungee );
+-        bungee.getLogger().info( "Enabled Waterfall version " + bungee.getVersion() );
++        bungee.getLogger().info( "Enabled InfiniteBungee version " + bungee.getVersion() );
+         bungee.start();
+ 
+         if ( !options.has( "noconsole" ) )
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java
+new file mode 100644
+index 00000000..5054d4ae
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandBugs extends Command
++{
++
++    public CommandBugs()
++    {
++        super( "bugs", "infinite.command.bugs", "bug" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "§bGo to our discord server to report bugs! https://discord.gg/mWxUFqsynj " );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+index b26035cf..5a368d19 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+@@ -16,6 +16,6 @@ public class CommandBungee extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.BLUE + "This server is running Waterfall version " + ProxyServer.getInstance().getVersion() + " by md_5" );
++        sender.sendMessage( ChatColor.BLUE + "This server is running InfiniteBungee by the Infinite Development Team, a fork of Waterfall by PaperMC and md_5" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+new file mode 100644
+index 00000000..1921e4f9
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandDiscord extends Command
++{
++
++    public CommandDiscord()
++    {
++        super( "discord" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "Join our discord @ https://discord.gg/K6xQYgAtTw" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
+index 03feeb39..34075ff8 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
+@@ -15,7 +15,7 @@ public class CommandEnd extends Command
+ 
+     public CommandEnd()
+     {
+-        super( "end", "bungeecord.command.end" );
++        super( "end", "infinitebungee.command.end" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+new file mode 100644
+index 00000000..8b2807f6
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandHelp extends Command
++{
++
++    public CommandHelp()
++    {
++        super( "help" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "For commands help please vistit help.infinitenetworkmc.com" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
+index 1fd5a546..2f706f53 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
+@@ -9,7 +9,7 @@ public class CommandIP extends PlayerCommand
+ 
+     public CommandIP()
+     {
+-        super( "ip", "bungeecord.command.ip" );
++        super( "ip", "infinitebungee.command.ip" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
+new file mode 100644
+index 00000000..05e92d70
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandInfinite extends Command
++{
++
++    public CommandInfinite()
++    {
++        super( "Infinite" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "§aWelcome to §bInfinite§a! If you have any §dquestions or §cconcerns§a let us know on our discord!" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+new file mode 100644
+index 00000000..9c53c483
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandInfiniteBungee extends Command
++{
++
++    public CommandInfiniteBungee()
++    {
++        super( "infinitebungee" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.BLUE + "This server is running InfiniteBungee by the Infinite Development Team, a fork of Waterfall by PaperMC and md_5" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java b/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java
+index 18422669..fff924e8 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandPerms.java
+@@ -12,7 +12,7 @@ public class CommandPerms extends Command
+ 
+     public CommandPerms()
+     {
+-        super( "perms" );
++        super( "infiniteperms" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+index 720d0c3b..0af18cc6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+@@ -11,7 +11,7 @@ public class CommandReload extends Command
+ 
+     public CommandReload()
+     {
+-        super( "greload", "bungeecord.command.reload" );
++        super( "greload", "infinitebungee.command.reload" );
+     }
+ 
+     @Override
+@@ -23,7 +23,7 @@ public class CommandReload extends Command
+         BungeeCord.getInstance().startListeners();
+         BungeeCord.getInstance().getPluginManager().callEvent( new ProxyReloadEvent( sender ) );
+ 
+-        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "Waterfall has been reloaded."
+-                + " This is NOT advisable and you will not be supported with any issues that arise! Please restart Waterfall ASAP." );
++        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "InfiniteBungee has been reloaded."
++                + " This is NOT advisable and you will not be supported with any issues that arise! Please restart InfiniteBungee ASAP." );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
+index 0dd69778..98e1d9a2 100644
+--- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
++++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
+@@ -227,7 +227,7 @@ public class YamlConfig implements ConfigurationAdapter
+             Map<String, Object> val = entry.getValue();
+             String name = entry.getKey();
+             String addr = get( "address", "localhost:25565", val );
+-            String motd = ChatColor.translateAlternateColorCodes( '&', get( "motd", "&1Just another Waterfall - Forced Host", val ) );
++            String motd = ChatColor.translateAlternateColorCodes( '&', get( "motd", "&1Just another InfiniteBungee - Forced Host", val ) );
+             boolean restricted = get( "restricted", false, val );
+             SocketAddress address = Util.getAddr( addr );
+             ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
+diff --git a/proxy/src/main/resources/messages.properties b/proxy/src/main/resources/messages.properties
+index 76ad621f..ae60b896 100644
+--- a/proxy/src/main/resources/messages.properties
++++ b/proxy/src/main/resources/messages.properties
+@@ -1,43 +1,43 @@
+-alert=\u00a78[\u00a74Alert\u00a78]\u00a7r 
++alert=\u00a76[\u00a7e!\u00a76]\u00a7r
+ already_connected=\u00a7cYou are already connected to this server!
+-already_connected_proxy=\u00a7cYou are already connected to this proxy!
++already_connected_proxy=\u00a7aYou are already connected to \u00a7bInfinite\u00a7a!
+ already_connecting=\u00a7cAlready connecting to this server!
+-command_list=\u00a7a[{0}] \u00a7e({1}): \u00a7r{2}
+-connect_kick=\u00a7cKicked whilst connecting to {0}: {1}
+-current_server=\u00a76You are currently connected to {0}.
+-fallback_kick=\u00a7cCould not connect to a default or fallback server. Incorrectly configured address/port/firewall? {0}
+-fallback_lobby=\u00a7cCould not connect to target server, you have been moved to a fallback server.
+-lost_connection=\u00a7cProxy lost connection to server.
+-mojang_fail=\u00a7cError occurred while contacting login servers, are they down?
+-no_permission=\u00a7cYou do not have permission to execute this command!
+-no_server=\u00a7cThe specified server does not exist.
+-no_server_permission=\u00a7cYou don''t have permission to access this server.
+-outdated_client=\u00a7cOutdated client! Please use {0}
+-outdated_server=\u00a7cOutdated server! I''m still on {0}
+-proxy_full=\u00a7cServer is full!
+-restart=\u00a7cThe proxy server is restarting
+-server_list=\u00a76You may connect to the following servers at this time: 
+-server_went_down=\u00a7cThe server you were previously on went down, you have been connected to a fallback server
+-total_players=Total players online: {0}
+-name_invalid=\u00a7cUsername contains invalid characters.
+-ping_cannot_connect=\u00a7cCould not request status from target server.
+-offline_mode_player=\u00a7cNot authenticated with Minecraft.net
++command_list=\u00a7eServer:\u00a73 {0} \u00a7aOnline: \u00a76{1} \u00a73People: \u00a7b{2}
++connect_kick=Could not connect you to the target server: {1}
++current_server=You are connected to server {0}
++fallback_kick=Could not connect you to the target server: Connection refused.
++fallback_lobby=Could not connect you to the target server, you have been moved to a fallback server.
++lost_connection=[Proxy] Lost connection to server.
++mojang_fail=Error occurred while contacting login servers, are they down?
++no_permission=\u00a7cYou don't have permission to use that command!
++no_server=\u00a7cThat server does not exist!
++no_server_permission=\u00a7cYou don't have permission to access this custom server.
++outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a7bInfinite\u00a7a please use {0}!
++outdated_server=Outdated server! Please let us know of this error on our discord!
++proxy_full=\u00a7bInfinite\u00a7a is full, check back later!
++restart=\u00a7bInfinite\u00a7a is restarting!
++server_list=\u00a7aYou may connect to these servers right now:
++server_went_down=The server you were previously on went down, you have been connected to a fallback server
++total_players=\u00a7aTotal players on \u00a7bInfinite\u00a7a:\u00a76 {0}
++name_invalid=Username contains invalid characters.
++ping_cannot_connect=Can''t connect to server.
++offline_mode_player=Not authenticated with Minecraft.net
+ secure_profile_required=\u00a7cA secure profile is required to join this server.
+ secure_profile_expired=\u00a7cSecure profile expired.
+ secure_profile_invalid=\u00a7cSecure profile invalid.
+ secure_profile_unsupported=\u00a7cOutdated client, secure profile not supported. Please use 1.19 or newer.
+-message_needed=\u00a7cYou must supply a message.
++message_needed=\u00a7aYou must supply a message to use this.
+ error_occurred_player=\u00a7cAn error occurred while parsing your message. (Hover for details)
+ error_occurred_console=\u00a7cAn error occurred while parsing your message: {0}
+ click_to_connect=Click to connect to the server
+-username_needed=\u00a7cPlease follow this command by a username.
+-user_not_online=\u00a7cThat user is not online.
+-user_online_at=\u00a7a{0} \u00a7ris online at {1}
+-send_cmd_usage=\u00a7cNot enough arguments, usage: /send <server|player|all|current> <target>
+-player_only=\u00a7cOnly in game players can use this command
+-you_got_summoned=\u00a76Summoned to {0} by {1}
+-command_perms_groups=\u00a76You have the following groups: {0}
+-command_perms_permission=\u00a79- {0}
+-command_ip=\u00a79IP of {0} is {1}
+-illegal_chat_characters=\u00a7cIllegal characters in chat ({0})
+-kick_message=\u00a7cYou have been kicked off the proxy.
++username_needed=\u00a7aPlease follow this command by a player name.
++user_not_online=\u00a7cThat player is not online.
++user_online_at=\u00a7b{0} \u00a7ais online at {1}
++send_cmd_usage=\u00a7aNot enough arguments, usage: /send [server|player|all|current] [target]
++player_only=\u00a7cOnly in game players can use this command!
++you_got_summoned=\u00a7b\u00a7l» \u00a77Connecting to {0}..
++command_perms_groups=\u00a7aYou have this group: {0}
++command_perms_permission=\u00a7b- {0}
++command_ip=\u00a73IP of {0} is {1}
++illegal_chat_characters=\u00a7cillegal characters in chat
++kick_message=\u00a7cYou have been kicked.
+diff --git a/query/pom.xml b/query/pom.xml
+index 72eb14e2..7e7bd6ea 100644
+--- a/query/pom.xml
++++ b/query/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.infinitebungee</groupId>
++        <artifactId>infinitebungee-parent</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-query</artifactId>
++    <groupId>io.github.infinitebungee</groupId>
++    <artifactId>infinitebungee-query</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Query</name>
+-    <description>Minecraft query implementation based on the Waterfall API.</description>
++    <name>InfiniteBungee-Query</name>
++    <description>Minecraft query implementation based on the InfiniteBungee API.</description>
+ 
+     <dependencies>
+         <dependency>
+@@ -26,8 +26,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.infinitebungee</groupId>
++            <artifactId>infinitebungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+-- 
+2.32.1 (Apple Git-133)
+
