@@ -57,5 +57,5 @@ function savePatches {
     echo "  Patches saved for $what to $what_name-Patches/"
 }
 
-savePatches "BungeeCord" "InfiniteBungee-Proxy"
+savePatches "Waterfall/Waterfall-Proxy" "InfiniteBungee-Proxy"
 )

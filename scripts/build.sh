@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-git submodule update --init && ./scripts/applyPatches.sh || exit 1
-
+git submodule update --recursive --init && ./scripts/applyPatches.sh
 if [ "$1" == "--jar" ]; then
-     mvn clean package
+    pushd InfiniteBungee-Proxy
+    mvn clean package
 fi
