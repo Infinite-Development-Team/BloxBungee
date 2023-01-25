@@ -1,0 +1,69 @@
+From a6188f350197379893f2c84e24fd688aee0c2498 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Wed, 25 Jan 2023 14:22:34 -0500
+Subject: [PATCH] Tweaks1/25/23
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+index b7bc6353..d870f2a6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+@@ -10,7 +10,7 @@ public class CommandInfiniteBungee extends Command
+ 
+     public CommandInfiniteBungee()
+     {
+-        super( "proxyserver" );
++        super( "proxyversion" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+index ebb0dfce..0be5732e 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+@@ -11,7 +11,7 @@ public class CommandReload extends Command
+ 
+     public CommandReload()
+     {
+-        super( "greload", "infinite.command.reload" );
++        super( "infinitebungeereloadpleaseneverusethiscommand", "infinite.command.reload" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/resources/messages.properties b/proxy/src/main/resources/messages.properties
+index de0c7989..f464dc14 100644
+--- a/proxy/src/main/resources/messages.properties
++++ b/proxy/src/main/resources/messages.properties
+@@ -5,7 +5,7 @@ already_connecting=\u00a7cAlready connecting to this server!
+ command_list=\u00a7eServer:\u00a73 {0} \u00a7aOnline: \u00a76{1} \u00a73Players: \u00a7b{2}
+ connect_kick=Could not connect you to the target server: {1}
+ current_server=You are connected to server {0}
+-fallback_kick=Could not connect you to the target server: Connection refused.
++fallback_kick=Could not connect you to the target server: Connection unavailible!
+ fallback_lobby=Could not connect you to the target server, you have been moved to a fallback server.
+ lost_connection=[Proxy] Lost connection to server.
+ mojang_fail=Error occurred while contacting login servers, are they down?
+@@ -14,9 +14,9 @@ no_server=\u00a7cThat server does not exist!
+ no_server_permission=\u00a7cYou don''t have permission to access this custom server.
+ outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a7bInfinite Network\u00a7a please use 1.8+!
+ outdated_server=Outdated server! Please let us know of this error on our discord!
+-proxy_full=\u00a7bInfinite\u00a7a is full, check back later!
++proxy_full=\u00a7bInfinite Network\u00a7a is full, check back later!
+ restart=\u00a7bInfinite Network\u00a7a is restarting!
+-server_list=\u00a7aYou may connect to these servers right now:
++server_list=\u00a7aYou may connect to these servers right now: \u00a73
+ server_went_down=The server you were previously on went down, you have been connected to a fallback server
+ total_players=\u00a7aTotal players on \u00a7bInfinite Network\u00a7a:\u00a76 {0}
+ name_invalid=Username contains invalid characters.
+@@ -32,7 +32,7 @@ error_occurred_console=\u00a7cAn error occurred while parsing your message: {0}
+ click_to_connect=Click to connect to the server
+ username_needed=\u00a7aPlease follow this command by a player name.
+ user_not_online=\u00a7cThat player is not online.
+-user_online_at=\u00a7b{0} \u00a7ais online at {1}
++user_online_at=\u00a7b{0} \u00a7ais online on server: {1}
+ send_cmd_usage=\u00a7aNot enough arguments, usage: /send [server|player|all|current] [target]
+ player_only=\u00a7cOnly in game players can use this command!
+ you_got_summoned=\u00a7b\u00a7l» \u00a77Connecting to {0}..
+-- 
+2.32.1 (Apple Git-133)
+
