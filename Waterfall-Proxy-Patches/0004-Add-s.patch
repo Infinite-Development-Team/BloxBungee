@@ -13,7 +13,7 @@ index 163997c0..6403a2ee 100644
      public CommandServer()
      {
 -        super( "server", "infinite.command.server" );
-+        super( "server", "s", "connect", "infinite.command.server" );
++        super( "server", "s", "infinite.command.server" );
      }
  
      @Override
