@@ -26,7 +26,7 @@ index 3d2505eb..65055396 100644
          }
  
 -        getLogger().info( "Thank you and goodbye" );
-+        getLogger().info( "InfiniteBungee successfully stoped" );
++        getLogger().info( "InfiniteBungee successfully stopped" );
          // Need to close loggers after last message!
          org.apache.logging.log4j.LogManager.shutdown(); // Waterfall
  
