@@ -39,7 +39,7 @@ index de0c7989..f464dc14 100644
  connect_kick=Could not connect you to the target server: {1}
  current_server=You are connected to server {0}
 -fallback_kick=Could not connect you to the target server: Connection refused.
-+fallback_kick=Could not connect you to the target server: Connection unavailible!
++fallback_kick=Could not connect you to the target server: Connection unavailable!
  fallback_lobby=Could not connect you to the target server, you have been moved to a fallback server.
  lost_connection=[Proxy] Lost connection to server.
  mojang_fail=Error occurred while contacting login servers, are they down?
