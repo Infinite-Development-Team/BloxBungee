@@ -1,0 +1,244 @@
+From 7642c0b3f6cb163265ab4b933e90aa2f3308668e Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Mon, 26 Jun 2023 20:17:45 -0400
+Subject: [PATCH] Infinite -> BloxBlast
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index 72e186cb..dcf00462 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -78,13 +78,13 @@ import net.md_5.bungee.chat.SelectorComponentSerializer;
+ import net.md_5.bungee.chat.TextComponentSerializer;
+ import net.md_5.bungee.chat.TranslatableComponentSerializer;
+ import net.md_5.bungee.command.CommandBungee;
+-import net.md_5.bungee.command.CommandInfiniteBungee;
++import net.md_5.bungee.command.CommandBloxBungee;
+ import net.md_5.bungee.command.CommandEnd;
+ import net.md_5.bungee.command.CommandIP;
+ import net.md_5.bungee.command.CommandBugs;
+ import net.md_5.bungee.command.CommandHelp;
+ import net.md_5.bungee.command.CommandDiscord;
+-import net.md_5.bungee.command.CommandInfinite;
++import net.md_5.bungee.command.CommandBloxBlast;
+ import net.md_5.bungee.command.CommandPerms;
+ import net.md_5.bungee.command.CommandReload;
+ import net.md_5.bungee.command.ConsoleCommandSender;
+@@ -194,7 +194,7 @@ public class BungeeCord extends ProxyServer
+     public BungeeCord() throws IOException
+     {
+         // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
+-        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use InfiniteBungee in directory with ! in path." );
++        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use BloxBungee in directory with ! in path." );
+ 
+         reloadMessages();
+ 
+@@ -245,8 +245,8 @@ public class BungeeCord extends ProxyServer
+         getPluginManager().registerCommand( null, new CommandHelp() );
+         getPluginManager().registerCommand( null, new CommandBugs() );
+         getPluginManager().registerCommand( null, new CommandDiscord() );
+-        getPluginManager().registerCommand( null, new CommandInfinite() );
+-        getPluginManager().registerCommand( null, new CommandInfiniteBungee() );
++        getPluginManager().registerCommand( null, new CommandBloxBlast() );
++        getPluginManager().registerCommand( null, new CommandBloxBungee() );
+         getPluginManager().registerCommand( null, new CommandBungee() );
+         getPluginManager().registerCommand( null, new CommandPerms() );
+ 
+@@ -518,7 +518,7 @@ public class BungeeCord extends ProxyServer
+                     } catch (InterruptedException ignored) {}
+         }
+ 
+-        getLogger().info( "InfiniteBungee successfully stopped" );
++        getLogger().info( "BloxBungee successfully stopped" );
+         // Need to close loggers after last message!
+         org.apache.logging.log4j.LogManager.shutdown(); // Waterfall
+ 
+@@ -555,7 +555,7 @@ public class BungeeCord extends ProxyServer
+     @Override
+     public String getName()
+     {
+-        return "Infinite";
++        return "BloxBlast";
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
+similarity index 75%
+rename from proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
+rename to proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
+index c296e116..ab6d598c 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandInfinite.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
+@@ -10,12 +10,12 @@ public class CommandInfinite extends Command
+ 
+     public CommandInfinite()
+     {
+-        super( "Infinite" );
++        super( "bloxblast" );
+     }
+ 
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.AQUA + "§aWelcome to the §bInfinite Network§a! If you have any §dquestions §aor §cconcerns§a let us know on our discord!" );
++        sender.sendMessage( ChatColor.AQUA + "§aWelcome to the §6§lBlox§e§lBlast§r§a! If you have any §dquestions §aor §cconcerns§a let us know on our discord!" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
+similarity index 76%
+rename from proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
+rename to proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
+index d870f2a6..6d144a6b 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandInfiniteBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
+@@ -16,6 +16,6 @@ public class CommandInfiniteBungee extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.BLUE + "This server is running InfiniteBungee version " + ProxyServer.getInstance().getVersion() + " by the Infinite Development Team, a fork of Waterfall by PaperMC and md_5" );
++        sender.sendMessage( ChatColor.BLUE + "This server is running BloxBungee version " + ProxyServer.getInstance().getVersion() + "." );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java
+index 5054d4ae..254b63a1 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBugs.java
+@@ -10,12 +10,12 @@ public class CommandBugs extends Command
+ 
+     public CommandBugs()
+     {
+-        super( "bugs", "infinite.command.bugs", "bug" );
++        super( "bugs", "bloxblast.command.bugs", "bug" );
+     }
+ 
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.AQUA + "§bGo to our discord server to report bugs! https://discord.gg/mWxUFqsynj " );
++        sender.sendMessage( ChatColor.AQUA + "§bGo to our discord server to report bugs! https://discord.gg/bloxblast " );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+index 5a368d19..2e051a5d 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+@@ -16,6 +16,6 @@ public class CommandBungee extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.BLUE + "This server is running InfiniteBungee by the Infinite Development Team, a fork of Waterfall by PaperMC and md_5" );
++        sender.sendMessage( ChatColor.BLUE + "This server is running BloxBungee by the BloxBlast Development Team, a fork of Waterfall by PaperMC and md_5" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+index 1921e4f9..18bdb6e7 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+@@ -16,6 +16,6 @@ public class CommandDiscord extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.AQUA + "Join our discord @ https://discord.gg/K6xQYgAtTw" );
++        sender.sendMessage( ChatColor.AQUA + "Join our discord @ https://discord.gg/bloxblast" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
+index 1205e608..aef4323a 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandEnd.java
+@@ -15,7 +15,7 @@ public class CommandEnd extends Command
+ 
+     public CommandEnd()
+     {
+-        super( "end", "infinite.command.end" );
++        super( "end", "bloxblast.command.end" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+index 8b2807f6..d1c104bb 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+@@ -16,6 +16,6 @@ public class CommandHelp extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.AQUA + "For commands help please vistit help.infinitenetworkmc.com" );
++        sender.sendMessage( ChatColor.AQUA + "For commands help please visit our discord!" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
+index b4518347..be1669f0 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandIP.java
+@@ -9,7 +9,7 @@ public class CommandIP extends PlayerCommand
+ 
+     public CommandIP()
+     {
+-        super( "ip", "infinite.command.ip" );
++        super( "ip", "bloxblast.command.ip" );
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+index 0be5732e..0728dd3e 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
+@@ -11,7 +11,7 @@ public class CommandReload extends Command
+ 
+     public CommandReload()
+     {
+-        super( "infinitebungeereloadpleaseneverusethiscommand", "infinite.command.reload" );
++        super( "bloxblastbungeereloadpleaseneverusethiscommand", "bloxblast.command.reload" );
+     }
+ 
+     @Override
+@@ -23,7 +23,7 @@ public class CommandReload extends Command
+         BungeeCord.getInstance().startListeners();
+         BungeeCord.getInstance().getPluginManager().callEvent( new ProxyReloadEvent( sender ) );
+ 
+-        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "InfiniteBungee has been reloaded."
+-                + " This is NOT advisable and you will not be supported with any issues that arise! Please restart InfiniteBungee ASAP." );
++        sender.sendMessage( ChatColor.BOLD.toString() + ChatColor.RED.toString() + "bloxBungee has been reloaded."
++                + " This is NOT advisable and you will not be supported with any issues that arise! Please restart bloxblastBungee ASAP." );
+     }
+ }
+diff --git a/proxy/src/main/resources/messages.properties b/proxy/src/main/resources/messages.properties
+index 4e7d2bf9..26f44bfc 100644
+--- a/proxy/src/main/resources/messages.properties
++++ b/proxy/src/main/resources/messages.properties
+@@ -1,6 +1,6 @@
+ alert=\u00a76[\u00a7e!\u00a76] \u00a7r
+ already_connected=\u00a7cYou are already connected to this server!
+-already_connected_proxy=\u00a7aYou are already connected to \u00a7bInfinite Network\u00a7a!
++already_connected_proxy=\u00a7aYou are already connected to \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a!
+ already_connecting=\u00a7cAlready connecting to this server!
+ command_list=\u00a7eServer:\u00a73 {0} \u00a7aOnline: \u00a76{1} \u00a73Players: \u00a7b{2}
+ connect_kick=Could not connect you to the target server: {1}
+@@ -12,13 +12,13 @@ mojang_fail=Error occurred while contacting login servers, are they down?
+ no_permission=\u00a7cYou don''t have permission to use that command!
+ no_server=\u00a7cThat server does not exist!
+ no_server_permission=\u00a7cYou don''t have permission to access this custom server.
+-outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a7bInfinite Network\u00a7a please use 1.8+!
++outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a please use 1.8+!
+ outdated_server=Outdated server! Please let us know of this error on our discord!
+-proxy_full=\u00a7bInfinite Network\u00a7a is full, check back later!
+-restart=\u00a7bInfinite Network\u00a7a is restarting!
++proxy_full=\u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a is full, check back later!
++restart=\u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a is restarting!
+ server_list=\u00a7aYou may connect to these servers right now: \u00a73
+ server_went_down=The server you were previously on went down, you have been connected to a fallback server
+-total_players=\u00a7aTotal players on \u00a7bInfinite Network\u00a7a:\u00a76 {0}
++total_players=\u00a7aTotal players on \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a:\u00a76 {0}
+ name_invalid=Username contains invalid characters.
+ ping_cannot_connect=Can''t connect to server.
+ offline_mode_player=Not authenticated with Minecraft.net
+@@ -40,4 +40,4 @@ command_perms_groups=\u00a7aYou are on group: {0}
+ command_perms_permission=\u00a7b- {0}
+ command_ip=\u00a73IP of {0} is {1}
+ illegal_chat_characters=\u00a7cillegal characters in chat
+-kick_message=\u00a7cYou have been kicked from \u00a7bInfinite Network\u00a7c!
++kick_message=\u00a7cYou have been kicked from \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7c!
+-- 
+2.37.1 (Apple Git-137.1)
+

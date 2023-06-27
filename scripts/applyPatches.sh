@@ -68,6 +68,6 @@ popd
 basedir=$(dirname "$basedir")
 
 # Apply travertine patches
-applyPatch Waterfall/Waterfall-Proxy InfiniteBungee-Proxy HEAD
+applyPatch Waterfall/Waterfall-Proxy BloxBungee-Proxy HEAD
 
 enableCommitSigningIfNeeded

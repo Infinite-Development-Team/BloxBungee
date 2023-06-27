@@ -1,0 +1,43 @@
+From 17b8b228baeac18ac4395fc4351694caef0d96b8 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Mon, 26 Jun 2023 20:21:47 -0400
+Subject: [PATCH] Infinite -> BloxBlast
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
+index ab6d598c..3e93833c 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBlast.java
+@@ -5,10 +5,10 @@ import net.md_5.bungee.api.CommandSender;
+ import net.md_5.bungee.api.ProxyServer;
+ import net.md_5.bungee.api.plugin.Command;
+ 
+-public class CommandInfinite extends Command
++public class CommandBloxBlast extends Command
+ {
+ 
+-    public CommandInfinite()
++    public CommandBloxBlast()
+     {
+         super( "bloxblast" );
+     }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
+index 6d144a6b..57ce3e49 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBloxBungee.java
+@@ -5,10 +5,10 @@ import net.md_5.bungee.api.CommandSender;
+ import net.md_5.bungee.api.ProxyServer;
+ import net.md_5.bungee.api.plugin.Command;
+ 
+-public class CommandInfiniteBungee extends Command
++public class CommandBloxBungee extends Command
+ {
+ 
+-    public CommandInfiniteBungee()
++    public CommandBloxBungee()
+     {
+         super( "proxyversion" );
+     }
+-- 
+2.37.1 (Apple Git-137.1)
+
