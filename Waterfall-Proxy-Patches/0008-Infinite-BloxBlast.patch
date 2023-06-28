@@ -211,7 +211,7 @@ index 4e7d2bf9..26f44bfc 100644
  alert=\u00a76[\u00a7e!\u00a76] \u00a7r
  already_connected=\u00a7cYou are already connected to this server!
 -already_connected_proxy=\u00a7aYou are already connected to \u00a7bInfinite Network\u00a7a!
-+already_connected_proxy=\u00a7aYou are already connected to \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a!
++already_connected_proxy=\u00a7aYou are already connected to \u00a7e\u00a7lBlox\u00a76\u00a7lBlast\u00a7r\u00a7a!
  already_connecting=\u00a7cAlready connecting to this server!
  command_list=\u00a7eServer:\u00a73 {0} \u00a7aOnline: \u00a76{1} \u00a73Players: \u00a7b{2}
  connect_kick=Could not connect you to the target server: {1}
@@ -220,7 +220,7 @@ index 4e7d2bf9..26f44bfc 100644
  no_server=\u00a7cThat server does not exist!
  no_server_permission=\u00a7cYou don''t have permission to access this custom server.
 -outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a7bInfinite Network\u00a7a please use 1.8+!
-+outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a please use 1.8+!
++outdated_client=\u00a7cOutdated client! \u00a7aTo play on \u00a7e\u00a7lBlox\u00a76\u00a7lBlast\u00a7r\u00a7a please use 1.8+!
  outdated_server=Outdated server! Please let us know of this error on our discord!
 -proxy_full=\u00a7bInfinite Network\u00a7a is full, check back later!
 -restart=\u00a7bInfinite Network\u00a7a is restarting!
@@ -229,7 +229,7 @@ index 4e7d2bf9..26f44bfc 100644
  server_list=\u00a7aYou may connect to these servers right now: \u00a73
  server_went_down=The server you were previously on went down, you have been connected to a fallback server
 -total_players=\u00a7aTotal players on \u00a7bInfinite Network\u00a7a:\u00a76 {0}
-+total_players=\u00a7aTotal players on \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a:\u00a76 {0}
++total_players=\u00a7aTotal players on \u00a7e\u00a7lBlox\u00a76\u00a7lBlast\u00a7r\u00a7a:\u00a76 {0}
  name_invalid=Username contains invalid characters.
  ping_cannot_connect=Can''t connect to server.
  offline_mode_player=Not authenticated with Minecraft.net
@@ -238,7 +238,7 @@ index 4e7d2bf9..26f44bfc 100644
  command_ip=\u00a73IP of {0} is {1}
  illegal_chat_characters=\u00a7cillegal characters in chat
 -kick_message=\u00a7cYou have been kicked from \u00a7bInfinite Network\u00a7c!
-+kick_message=\u00a7cYou have been kicked from \u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7c!
++kick_message=\u00a7cYou have been kicked from \u00a7e\u00a7lBlox\u00a76\u00a7lBlast\u00a7r\u00a7c!
 -- 
 2.37.1 (Apple Git-137.1)
 
