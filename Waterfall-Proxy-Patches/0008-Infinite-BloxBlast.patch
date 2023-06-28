@@ -225,7 +225,7 @@ index 4e7d2bf9..26f44bfc 100644
 -proxy_full=\u00a7bInfinite Network\u00a7a is full, check back later!
 -restart=\u00a7bInfinite Network\u00a7a is restarting!
 +proxy_full=\u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a is full, check back later!
-+restart=\u00a76\u00a7lBlox\u00a7e\u00a7lBlast\u00a7r\u00a7a is restarting!
++restart=\u00a7e\u00a7lBlox\u00a76\u00a7lBlast\u00a7r\u00a7a is restarting!
  server_list=\u00a7aYou may connect to these servers right now: \u00a73
  server_went_down=The server you were previously on went down, you have been connected to a fallback server
 -total_players=\u00a7aTotal players on \u00a7bInfinite Network\u00a7a:\u00a76 {0}
