@@ -1,0 +1,172 @@
+From e058e956dbae474a2bf9d6d8bc8ddb5c8ceaa3d8 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Mon, 24 Jul 2023 02:54:11 -0400
+Subject: [PATCH] Add cmds
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index a7091ab6..e8d0af08 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -80,6 +80,10 @@ import net.md_5.bungee.chat.TranslatableComponentSerializer;
+ import net.md_5.bungee.command.CommandBungee;
+ import net.md_5.bungee.command.CommandEnd;
+ import net.md_5.bungee.command.CommandIP;
++import net.md_5.bungee.command.CommandDiscord;
++import net.md_5.bungee.command.CommandBB;
++import net.md_5.bungee.command.CommandHelp;
++import net.md_5.bungee.command.CommandYT;
+ import net.md_5.bungee.command.CommandPerms;
+ import net.md_5.bungee.command.CommandReload;
+ import net.md_5.bungee.command.ConsoleCommandSender;
+@@ -189,7 +193,7 @@ public class BungeeCord extends ProxyServer
+     public BungeeCord() throws IOException
+     {
+         // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
+-        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use Waterfall in directory with ! in path." );
++        Preconditions.checkState( new File( "." ).getAbsolutePath().indexOf( '!' ) == -1, "Cannot use BloxBungee in directory with ! in path." );
+
+         reloadMessages();
+
+@@ -237,6 +241,10 @@ public class BungeeCord extends ProxyServer
+         getPluginManager().registerCommand( null, new CommandReload() );
+         getPluginManager().registerCommand( null, new CommandEnd() );
+         getPluginManager().registerCommand( null, new CommandIP() );
++        getPluginManager().registerCommand( null, new CommandBB() );
++        getPluginManager().registerCommand( null, new CommandHelp() );
++        getPluginManager().registerCommand( null, new CommandDiscord() );
++        getPluginManager().registerCommand( null, new CommandYT() );
+         getPluginManager().registerCommand( null, new CommandBungee() );
+         getPluginManager().registerCommand( null, new CommandPerms() );
+
+@@ -545,7 +553,7 @@ public class BungeeCord extends ProxyServer
+     @Override
+     public String getName()
+     {
+-        return "Waterfall";
++        return "BloxBlast";
+     }
+
+     @Override
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBB.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBB.java
+new file mode 100644
+index 00000000..d017e9af
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBB.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandBB extends Command
++{
++
++    public CommandBB()
++    {
++        super( "bloxblast" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "§e§lBlox§6§lBlast §areleased on July 24, 2023 and was created by ABlueOdyssey and Painguino. Our goal is to make BloxBlast the very best Minecraft multiplayer experience out there and we won't stop until we do!" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+index b26035cf..7ea66ba7 100644
+--- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
+@@ -16,6 +16,6 @@ public class CommandBungee extends Command
+     @Override
+     public void execute(CommandSender sender, String[] args)
+     {
+-        sender.sendMessage( ChatColor.BLUE + "This server is running Waterfall version " + ProxyServer.getInstance().getVersion() + " by md_5" );
++        sender.sendMessage( ChatColor.BLUE + "This server is running BloxBungee by the BloxBlast Development Team, a fork of Waterfall by PaperMC & md_5" );
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+new file mode 100644
+index 00000000..7fdd9c94
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandDiscord.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandDiscord extends Command
++{
++
++    public CommandDiscord()
++    {
++        super( "discord" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.BLUE + "§bStay updated on game releases and chat with other BloxBlast players @ https://discord.gg/BloxBlast" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+new file mode 100644
+index 00000000..f040aeb2
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandHelp.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandHelp extends Command
++{
++
++    public CommandHelp()
++    {
++        super( "help" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "§aFor commands help, please visit our Discord: https://discord.gg/BloxBlast" );
++    }
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandYT.java b/proxy/src/main/java/net/md_5/bungee/command/CommandYT.java
+new file mode 100644
+index 00000000..a7c29c08
+--- /dev/null
++++ b/proxy/src/main/java/net/md_5/bungee/command/CommandYT.java
+@@ -0,0 +1,21 @@
++package net.md_5.bungee.command;
++
++import net.md_5.bungee.api.ChatColor;
++import net.md_5.bungee.api.CommandSender;
++import net.md_5.bungee.api.ProxyServer;
++import net.md_5.bungee.api.plugin.Command;
++
++public class CommandYT extends Command
++{
++
++    public CommandYT()
++    {
++        super( "youtube" );
++    }
++
++    @Override
++    public void execute(CommandSender sender, String[] args)
++    {
++        sender.sendMessage( ChatColor.AQUA + "§6Check out our §fYou§cTube§6 channel for videos and shorts on the server: https://www.youtube.com/@bloxblastmc" );
++    }
++}
+--
+2.39.2 (Apple Git-143)

@@ -1,0 +1,87 @@
+From 609fb9a1de2c2dec324bd173ce3ee017bf16daa1 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Mon, 24 Jul 2023 02:48:30 -0400
+Subject: [PATCH] Update Perms
+
+
+diff --git a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
+index 7e75d429..4790c953 100644
+--- a/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
++++ b/module/cmd-alert/src/main/java/net/md_5/bungee/module/cmd/alert/CommandAlert.java
+@@ -12,7 +12,7 @@ public class CommandAlert extends Command
+ 
+     public CommandAlert()
+     {
+-        super( "alert", "bungeecord.command.alert" );
++        super( "alert", "bloxblast.command.alert" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java b/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
+index 7ea239ac..fb95b33c 100644
+--- a/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
++++ b/module/cmd-find/src/main/java/net/md_5/bungee/module/cmd/find/CommandFind.java
+@@ -10,7 +10,7 @@ public class CommandFind extends PlayerCommand
+ 
+     public CommandFind()
+     {
+-        super( "find", "bungeecord.command.find" );
++        super( "find", "bloxblast.command.find" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java b/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
+index 6dab5cc8..21809827 100644
+--- a/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
++++ b/module/cmd-kick/src/main/java/net/md_5/bungee/module/cmd/kick/CommandKick.java
+@@ -18,7 +18,7 @@ public class CommandKick extends Command implements TabExecutor
+ 
+     public CommandKick()
+     {
+-        super( "gkick", "bungeecord.command.kick" );
++        super( "gkick", "bloxblast.command.kick" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java b/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
+index 79d0bb21..f670d3b2 100644
+--- a/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
++++ b/module/cmd-list/src/main/java/net/md_5/bungee/module/cmd/list/CommandList.java
+@@ -20,7 +20,7 @@ public class CommandList extends Command implements TabExecutor
+ 
+     public CommandList()
+     {
+-        super( "glist", "bungeecord.command.list" );
++        super( "glist", "BloxBlast.command.list" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java b/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
+index f59f9457..0464f76a 100644
+--- a/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
++++ b/module/cmd-send/src/main/java/net/md_5/bungee/module/cmd/send/CommandSend.java
+@@ -93,7 +93,7 @@ public class CommandSend extends Command implements TabExecutor
+ 
+     public CommandSend()
+     {
+-        super( "send", "bungeecord.command.send" );
++        super( "send", "bloxblast.command.send" );
+     }
+ 
+     @Override
+diff --git a/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java b/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
+index 698b420f..3b436d7c 100644
+--- a/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
++++ b/module/cmd-server/src/main/java/net/md_5/bungee/module/cmd/server/CommandServer.java
+@@ -26,7 +26,7 @@ public class CommandServer extends Command implements TabExecutor
+ 
+     public CommandServer()
+     {
+-        super( "server", "bungeecord.command.server" );
++        super( "s", "bloxblast.command.server" );
+     }
+ 
+     @Override
+-- 
+2.39.2 (Apple Git-143)
+
