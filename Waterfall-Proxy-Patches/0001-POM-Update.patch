@@ -1,0 +1,813 @@
+From f5fe239d3bccbdd4b8d2fe2be80fd5d53537ddb2 Mon Sep 17 00:00:00 2001
+From: SeanMurillo <sean.d.murillo@gmail.com>
+Date: Mon, 24 Jul 2023 01:46:19 -0400
+Subject: [PATCH] POM Update
+
+
+diff --git a/api/pom.xml b/api/pom.xml
+index 01b8f888..c9eeac26 100644
+--- a/api/pom.xml
++++ b/api/pom.xml
+@@ -4,42 +4,42 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-api</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-api</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-API</name>
++    <name>BloxBungee-API</name>
+     <description>API implemented by the Elastic Portal Suite</description>
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-config</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-config</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-event</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-event</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-protocol</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-protocol</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+@@ -75,7 +75,7 @@
+             <version>2.0</version>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- Waterfall - Add SLF4J -->
++        <!-- BloxBungee - Add SLF4J -->
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-api</artifactId>
+diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
+index 8328e576..e1782e8a 100644
+--- a/bootstrap/pom.xml
++++ b/bootstrap/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-bootstrap</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-bootstrap</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Bootstrap</name>
+-    <description>Java 1.6 loader for Waterfall</description>
++    <name>BloxBungee-Bootstrap</name>
++    <description>Java 1.6 loader for BloxBungee</description>
+ 
+     <properties>
+         <maven.deploy.skip>true</maven.deploy.skip>
+@@ -29,15 +29,15 @@
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-proxy</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-proxy</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+     </dependencies>
+ 
+     <build>
+-        <finalName>Waterfall</finalName>
++        <finalName>BloxBungee</finalName>
+         <plugins>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+diff --git a/chat/pom.xml b/chat/pom.xml
+index 040aa0f7..2b15bfe1 100644
+--- a/chat/pom.xml
++++ b/chat/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-chat</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-chat</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Chat</name>
+-    <description>Minecraft JSON chat API intended for use with Waterfall</description>
++    <name>BloxBungee-Chat</name>
++    <description>Minecraft JSON chat API intended for use with BloxBungee</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/config/pom.xml b/config/pom.xml
+index 7e2d07a7..65689da0 100644
+--- a/config/pom.xml
++++ b/config/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-config</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-config</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Config</name>
+-    <description>Generic java configuration API intended for use with Waterfall</description>
++    <name>BloxBungee-Config</name>
++    <description>Generic java configuration API intended for use with BloxBungee</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/event/pom.xml b/event/pom.xml
+index b2541c62..8e6c7ccd 100644
+--- a/event/pom.xml
++++ b/event/pom.xml
+@@ -4,17 +4,17 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-event</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-event</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Event</name>
+-    <description>Generic java event dispatching API intended for use with Waterfall.</description>
++    <name>BloxBungee-Event</name>
++    <description>Generic java event dispatching API intended for use with BloxBungee.</description>
+ </project>
+diff --git a/log/pom.xml b/log/pom.xml
+index 8368f7b3..9f559b93 100644
+--- a/log/pom.xml
++++ b/log/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-log</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-log</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Log</name>
+-    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
++    <name>BloxBungee-Log</name>
++    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with BloxBungee and Minecraft related applications.</description>
+ 
+     <dependencies>
+         <dependency>
+@@ -26,8 +26,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/log4j/pom.xml b/log4j/pom.xml
+index e83b2f21..e57cd284 100644
+--- a/log4j/pom.xml
++++ b/log4j/pom.xml
+@@ -3,19 +3,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-log4j</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-log4j</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Log4J</name>
+-    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
++    <name>BloxBungee-Log4J</name>
++    <description>Simplistic and performant Log4j2 based logger and console API designed for use with BloxBungee and Minecraft related applications.</description>
+ 
+     <properties>
+         <log4j2.version>2.20.0</log4j2.version>
+diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
+index 47d83c68..dc57f371 100644
+--- a/module/cmd-alert/pom.xml
++++ b/module/cmd-alert/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-alert</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-alert</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
+index 6db051a8..0ce19aa8 100644
+--- a/module/cmd-find/pom.xml
++++ b/module/cmd-find/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-find</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-find</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-kick/pom.xml b/module/cmd-kick/pom.xml
+index e23f59d2..b927753a 100644
+--- a/module/cmd-kick/pom.xml
++++ b/module/cmd-kick/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-kick</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-kick</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
+index 88ebf0f7..f9640e08 100644
+--- a/module/cmd-list/pom.xml
++++ b/module/cmd-list/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-list</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-list</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
+index 5887d1e9..0703564d 100644
+--- a/module/cmd-send/pom.xml
++++ b/module/cmd-send/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-send</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-send</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
+index 91a09d8b..98dfb01d 100644
+--- a/module/cmd-server/pom.xml
++++ b/module/cmd-server/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-server</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module-cmd-server</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/pom.xml b/module/pom.xml
+index 89c34e80..4d804845 100644
+--- a/module/pom.xml
++++ b/module/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-module</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+-    <name>Waterfall Modules</name>
+-    <description>Parent project for all Waterfall modules.</description>
++    <name>BloxBungee Modules</name>
++    <description>Parent project for all BloxBungee modules.</description>
+ 
+     <modules>
+         <module>cmd-alert</module>
+@@ -29,15 +29,15 @@
+     </modules>
+ 
+     <properties>
+-        <module.author>WaterfallMC</module.author>
++        <module.author>BloxBungeeMC</module.author>
+         <maven.deploy.skip>true</maven.deploy.skip>
+         <maven.javadoc.skip>true</maven.javadoc.skip>
+     </properties>
+ 
+     <dependencies>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
+index 3ba983d9..cdaf67af 100644
+--- a/module/reconnect-yaml/pom.xml
++++ b/module/reconnect-yaml/pom.xml
+@@ -4,8 +4,8 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-module</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+diff --git a/native/pom.xml b/native/pom.xml
+index 2412768b..b05f2be1 100644
+--- a/native/pom.xml
++++ b/native/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-native</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-native</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Native</name>
+-    <description>Optional native code to speed up and enhance Waterfall functionality.</description>
++    <name>BloxBungee-Native</name>
++    <description>Optional native code to speed up and enhance BloxBungee functionality.</description>
+ 
+     <dependencies>
+         <dependency>
+diff --git a/pom.xml b/pom.xml
+index d333a528..47b8cadb 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -4,24 +4,24 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-super</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-super</artifactId>
+         <version>dev-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-parent</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-parent</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+-    <name>Waterfall-Parent</name>
+-    <description>Parent project for all Waterfall modules.</description>
+-    <url>https://github.com/WaterfallMC/Waterfall</url>
++    <name>BloxBungee-Parent</name>
++    <description>Parent project for all BloxBungee modules.</description>
++    <url>https://github.com/BloxBungeeMC/BloxBungee</url>
+     <inceptionYear>2015</inceptionYear>
+     <organization>
+-        <name>WaterfallMC</name>
+-        <url>https://github.com/WaterfallMC</url>
++        <name>BloxBungeeMC</name>
++        <url>https://github.com/BloxBungeeMC</url>
+     </organization>
+     <licenses>
+         <license>
+@@ -66,13 +66,13 @@
+     </modules>
+ 
+     <scm>
+-        <connection>scm:git:git@github.com:com:WaterfallMC/Waterfall.git</connection>
+-        <developerConnection>scm:git:git@github.com:WaterfallMC/Waterfall.git</developerConnection>
+-        <url>git@github.com:WaterfallMC/Waterfall.git</url>
++        <connection>scm:git:git@github.com:com:BloxBungeeMC/BloxBungee.git</connection>
++        <developerConnection>scm:git:git@github.com:BloxBungeeMC/BloxBungee.git</developerConnection>
++        <url>git@github.com:BloxBungeeMC/BloxBungee.git</url>
+     </scm>
+     <issueManagement>
+         <system>GitHub</system>
+-        <url>https://github.com/PaperMC/Waterfall/issues</url>
++        <url>https://github.com/PaperMC/BloxBungee/issues</url>
+     </issueManagement>
+ 
+     <distributionManagement>
+@@ -302,7 +302,7 @@
+                                 </goals>
+                             </execution>
+                         </executions>
+-                        <!-- Waterfall start: TODO: Just convert this project to gradle.
++                        <!-- BloxBungee start: TODO: Just convert this project to gradle.
+                         Maven is a constant source of headaches, especially when we have crud like
+                         lombok inflicted upon the project mangling the build setup. I don't have the will to
+                         figure out where the duplicate artifact is coming from, I cannot reproduce this locally,
+@@ -310,7 +310,7 @@
+                         <configuration>
+                             <forceCreation>true</forceCreation>
+                         </configuration>
+-                        <!-- Waterfall end -->
++                        <!-- BloxBungee end -->
+                     </plugin>
+                     <plugin>
+                         <groupId>org.projectlombok</groupId>
+@@ -360,7 +360,7 @@
+                                     <!-- lombok does not add @return or @param which causes warnings, so ignore -->
+                                     <doclint>none</doclint>
+                                     <sourcepath>${project.build.directory}/delombok</sourcepath>
+-                                    <additionalJOption>--no-module-directories</additionalJOption> <!-- Waterfall -->
++                                    <additionalJOption>--no-module-directories</additionalJOption> <!-- BloxBungee -->
+                                 </configuration>
+                             </execution>
+                         </executions>
+diff --git a/protocol/pom.xml b/protocol/pom.xml
+index c6105b87..35c018ba 100644
+--- a/protocol/pom.xml
++++ b/protocol/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-protocol</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-protocol</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Protocol</name>
+-    <description>Minimal implementation of the Minecraft protocol for use in Waterfall</description>
++    <name>BloxBungee-Protocol</name>
++    <description>Minimal implementation of the Minecraft protocol for use in BloxBungee</description>
+ 
+     <!-- We really shouldn't depend on external repositories, but at least this is the Central staging one -->
+     <repositories>
+@@ -41,8 +41,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-chat</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-chat</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+diff --git a/proxy/pom.xml b/proxy/pom.xml
+index 83d8719b..6c313df8 100644
+--- a/proxy/pom.xml
++++ b/proxy/pom.xml
+@@ -4,18 +4,18 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-proxy</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-proxy</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Proxy</name>
++    <name>BloxBungee-Proxy</name>
+     <description>Proxy component of the Elastic Portal Suite</description>
+ 
+     <properties>
+@@ -34,7 +34,7 @@
+             <artifactId>netty-codec-http</artifactId>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- Waterfall Start - add Netty DNS resolver -->
++        <!-- BloxBungee Start - add Netty DNS resolver -->
+         <dependency>
+             <groupId>io.netty</groupId>
+             <artifactId>netty-resolver-dns</artifactId>
+@@ -45,7 +45,7 @@
+             <artifactId>netty-resolver-dns-native-macos</artifactId>
+             <classifier>osx-x86_64</classifier>
+         </dependency>
+-        <!-- Waterfall End -->
++        <!-- BloxBungee End -->
+         <dependency>
+             <groupId>io.netty</groupId>
+             <artifactId>netty-handler</artifactId>
+@@ -64,42 +64,42 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-log4j</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-log4j</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-native</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-native</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-protocol</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-protocol</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-query</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-query</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+-        <!-- // Waterfall - We already bundle an slf4j impl
++        <!-- // BloxBungee - We already bundle an slf4j impl
+         <dependency>
+             <groupId>net.md-5</groupId>
+             <artifactId>bungeecord-slf4j</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+-        </dependency> // Waterfall - We already bundle an slf4j impl -->
++        </dependency> // BloxBungee - We already bundle an slf4j impl -->
+         <dependency>
+             <groupId>net.sf.jopt-simple</groupId>
+             <artifactId>jopt-simple</artifactId>
+@@ -131,7 +131,7 @@
+             <version>1.9.10</version>
+             <scope>runtime</scope>
+         </dependency>
+-        <!-- Waterfall start - Console improvements - bring back slf4j-->
++        <!-- BloxBungee start - Console improvements - bring back slf4j-->
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-jdk14</artifactId>
+@@ -159,10 +159,10 @@
+             <version>3.21.0</version>
+             <scope>runtime</scope>
+         </dependency>
+-        <!-- Waterfall end -->
++        <!-- BloxBungee end -->
+     </dependencies>
+ 
+-    <!-- Waterfall start - copy license files into jar -->
++    <!-- BloxBungee start - copy license files into jar -->
+     <build>
+         <resources>
+             <resource>
+@@ -182,5 +182,5 @@
+             </resource>
+         </resources>
+     </build>
+-    <!-- Waterfall end -->
++    <!-- BloxBungee end -->
+ </project>
+diff --git a/query/pom.xml b/query/pom.xml
+index fc864f83..d57f5fd5 100644
+--- a/query/pom.xml
++++ b/query/pom.xml
+@@ -4,19 +4,19 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-parent</artifactId>
++        <groupId>io.github.bloxbungee</groupId>
++        <artifactId>bloxbungee-parent</artifactId>
+         <version>1.20-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-query</artifactId>
++    <groupId>io.github.bloxbungee</groupId>
++    <artifactId>bloxbungee-query</artifactId>
+     <version>1.20-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Waterfall-Query</name>
+-    <description>Minecraft query implementation based on the Waterfall API.</description>
++    <name>BloxBungee-Query</name>
++    <description>Minecraft query implementation based on the BloxBungee API.</description>
+ 
+     <dependencies>
+         <dependency>
+@@ -25,8 +25,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>io.github.waterfallmc</groupId>
+-            <artifactId>waterfall-api</artifactId>
++            <groupId>io.github.bloxbungee</groupId>
++            <artifactId>bloxbungee-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+-- 
+2.39.2 (Apple Git-143)
+
