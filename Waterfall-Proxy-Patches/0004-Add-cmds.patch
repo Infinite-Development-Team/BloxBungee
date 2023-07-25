@@ -72,7 +72,7 @@ index 00000000..d017e9af
 +    @Override
 +    public void execute(CommandSender sender, String[] args)
 +    {
-+        sender.sendMessage( ChatColor.AQUA + "§e§lBlox§6§lBlast §areleased on July 24, 2023 and was created by ABlueOdyssey and Painguino. Our goal is to make BloxBlast the very best Minecraft multiplayer experience out there and we won't stop until we do!" );
++        sender.sendMessage( ChatColor.AQUA + "§e§lBlox§6§lBlast §areleased on July 25, 2023 and was created by ABlueOdyssey and Painguino. Our goal is to make BloxBlast the very best Minecraft multiplayer experience out there and we won't stop until we do!" );
 +    }
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
